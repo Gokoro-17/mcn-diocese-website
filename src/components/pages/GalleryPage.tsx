@@ -1,7 +1,8 @@
 import { useEffect, useMemo, useState } from "react";
-import { Download, ImageIcon, Play, X } from "lucide-react";
+import { ImageIcon, Play } from "lucide-react";
+import FullscreenMediaViewer from "../media/FullscreenMediaViewer";
 import { galleryCategories } from "../../data/churchData";
-import { fetchPublishedGallery, mediaDownloadUrl } from "../../lib/media";
+import { fetchPublishedGallery } from "../../lib/media";
 import type { GalleryMediaItem } from "../../types/content";
 
 const galleryColors = [
@@ -11,7 +12,7 @@ const galleryColors = [
 
 export default function GalleryPage() {
   const [activeCategory, setActiveCategory] = useState("All");
-  const [lightboxItem, setLightboxItem] = useState<GalleryMediaItem | null>(null);
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
   const [items, setItems] = useState<GalleryMediaItem[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -25,20 +26,6 @@ export default function GalleryPage() {
     });
     return () => { active = false; };
   }, []);
-
-  useEffect(() => {
-    if (!lightboxItem) return;
-    const previousOverflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    const handleKey = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setLightboxItem(null);
-    };
-    window.addEventListener("keydown", handleKey);
-    return () => {
-      document.body.style.overflow = previousOverflow;
-      window.removeEventListener("keydown", handleKey);
-    };
-  }, [lightboxItem]);
 
   const categories = useMemo(() => {
     const uploadedCategories = items.map((item) => item.category);
@@ -75,7 +62,7 @@ export default function GalleryPage() {
                 const color = galleryColors[index % galleryColors.length];
                 const isLarge = index % 7 === 0;
                 return (
-                  <button key={item.id} type="button" aria-label={`${item.mediaType === "video" ? "Play" : "View"} ${item.title}`} className="gallery-item group relative mb-4 block w-full break-inside-avoid overflow-hidden rounded-xl text-left" style={{ background: `linear-gradient(135deg, ${color} 0%, ${color}88 100%)`, height: isLarge ? "260px" : "180px" }} onClick={() => setLightboxItem(item)}>
+                  <button key={item.id} type="button" aria-label={`${item.mediaType === "video" ? "Play" : "View"} ${item.title} in full screen`} className="gallery-item group relative mb-4 block w-full break-inside-avoid overflow-hidden rounded-xl text-left" style={{ background: `linear-gradient(135deg, ${color} 0%, ${color}88 100%)`, height: isLarge ? "260px" : "180px" }} onClick={() => setLightboxIndex(index)}>
                     {item.mediaUrl && item.mediaType === "image" && <img src={item.mediaUrl} alt={item.title} loading="lazy" className="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-105" />}
                     {item.mediaUrl && item.mediaType === "video" && <video src={item.mediaUrl} poster={item.thumbnailUrl ?? undefined} preload="metadata" muted className="absolute inset-0 h-full w-full object-cover" />}
                     {!item.mediaUrl && <div className="absolute inset-0 flex items-center justify-center text-white/40"><ImageIcon size={52} /></div>}
@@ -99,14 +86,13 @@ export default function GalleryPage() {
         </div>
       </section>
 
-      {lightboxItem && (
-        <div className="fixed inset-0 z-[80] flex items-center justify-center bg-black/95 p-4" onClick={() => setLightboxItem(null)} role="dialog" aria-modal="true" aria-label={lightboxItem.title}>
-          <div className="relative w-full max-w-5xl overflow-hidden rounded-2xl bg-black" onClick={(event) => event.stopPropagation()}>
-            {lightboxItem.mediaUrl ? lightboxItem.mediaType === "video" ? <video src={lightboxItem.mediaUrl} poster={lightboxItem.thumbnailUrl ?? undefined} controls autoPlay playsInline className="max-h-[80vh] w-full object-contain" /> : <img src={lightboxItem.mediaUrl} alt={lightboxItem.title} className="max-h-[80vh] w-full object-contain" /> : <div className="flex aspect-video items-center justify-center text-white/30"><ImageIcon size={90} /></div>}
-            <div className="flex flex-col gap-4 bg-slate-950 p-5 text-white sm:flex-row sm:items-center sm:justify-between"><div><div className="text-xs font-bold uppercase tracking-wider text-amber-400">{lightboxItem.category}</div><h2 className="mt-1 text-xl font-bold">{lightboxItem.title}</h2>{lightboxItem.description && <p className="mt-2 text-sm leading-6 text-white/65">{lightboxItem.description}</p>}</div>{lightboxItem.mediaUrl && <a href={mediaDownloadUrl(lightboxItem.mediaUrl)} download className="inline-flex shrink-0 items-center justify-center gap-2 rounded-lg bg-white px-4 py-2.5 text-sm font-bold text-slate-950 hover:bg-slate-100"><Download size={17} /> Download</a>}</div>
-            <button className="absolute right-4 top-4 z-30 flex h-10 w-10 items-center justify-center rounded-full bg-black/60 text-white hover:bg-black/80" onClick={() => setLightboxItem(null)} aria-label="Close media viewer"><X size={21} /></button>
-          </div>
-        </div>
+      {lightboxIndex !== null && (
+        <FullscreenMediaViewer
+          items={filtered}
+          activeIndex={lightboxIndex}
+          onIndexChange={setLightboxIndex}
+          onClose={() => setLightboxIndex(null)}
+        />
       )}
     </div>
   );

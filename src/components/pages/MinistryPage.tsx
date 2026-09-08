@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { ArrowLeft, ArrowRight, ImageIcon, Mail, MessageCircle, Phone, ShieldCheck, UserRound } from "lucide-react";
 import { CHURCH_NAME, contactInfo, ministries, type Ministry } from "../../data/churchData";
 import { fetchMinistryContent, type MinistryContent } from "../../lib/media";
+import FullscreenMediaViewer from "../media/FullscreenMediaViewer";
 
 interface MinistryPageProps {
   ministry: Ministry;
@@ -21,6 +22,7 @@ function whatsappContactLink(value: string, ministryName: string) {
 }
 
 export default function MinistryPage({ ministry, onBack, onOpenMinistry }: MinistryPageProps) {
+  const [activePhotoIndex, setActivePhotoIndex] = useState<number | null>(null);
   const [remoteContent, setRemoteContent] = useState<{
     ministrySlug: string;
     content: MinistryContent;
@@ -45,6 +47,13 @@ export default function MinistryPage({ ministry, onBack, onOpenMinistry }: Minis
     ? remoteContent.content
     : null;
   const photos = currentRemoteContent ? currentRemoteContent.photos : fallbackPhotos;
+  const viewerPhotos = photos.map((photo, index) => ({
+    id: photo.id,
+    title: photo.title || `${ministry.name} activity ${index + 1}`,
+    category: "Ministry Gallery",
+    mediaType: "image" as const,
+    mediaUrl: photo.imageUrl,
+  }));
   const president = currentRemoteContent?.president
     ? {
         ...ministry.president,
@@ -101,7 +110,26 @@ export default function MinistryPage({ ministry, onBack, onOpenMinistry }: Minis
             <h2 className="text-2xl font-bold md:text-3xl" style={{ color: "var(--church-navy)", fontFamily: "Playfair Display, serif" }}>Life in our fellowship</h2>
             {photos.length > 0 ? (
               <div className="mt-7 grid gap-4 sm:grid-cols-2">
-                {photos.map((photo, index) => <img key={photo.id} src={photo.imageUrl} alt={photo.title || `${ministry.name} activity ${index + 1}`} className={`h-64 w-full rounded-2xl object-cover ${index === 0 && photos.length > 2 ? "sm:col-span-2" : ""}`} loading="lazy" />)}
+                {photos.map((photo, index) => (
+                  <button
+                    key={photo.id}
+                    type="button"
+                    className={`group relative overflow-hidden rounded-2xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 ${index === 0 && photos.length > 2 ? "sm:col-span-2" : ""}`}
+                    style={{ outlineColor: ministry.color }}
+                    onClick={() => setActivePhotoIndex(index)}
+                    aria-label={`View ${photo.title || `${ministry.name} activity ${index + 1}`} in full screen`}
+                  >
+                    <img
+                      src={photo.imageUrl}
+                      alt={photo.title || `${ministry.name} activity ${index + 1}`}
+                      className="h-64 w-full object-cover transition duration-500 group-hover:scale-105"
+                      loading="lazy"
+                    />
+                    <span className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent px-4 pb-4 pt-12 text-left text-sm font-bold text-white opacity-0 transition group-hover:opacity-100 group-focus-visible:opacity-100">
+                      View full screen
+                    </span>
+                  </button>
+                ))}
               </div>
             ) : (
               <div className="mt-7 flex min-h-64 flex-col items-center justify-center rounded-2xl border-2 border-dashed border-gray-200 bg-gray-50 px-6 text-center">
@@ -163,6 +191,15 @@ export default function MinistryPage({ ministry, onBack, onOpenMinistry }: Minis
           </div>
         </div>
       </section>
+
+      {activePhotoIndex !== null && (
+        <FullscreenMediaViewer
+          items={viewerPhotos}
+          activeIndex={activePhotoIndex}
+          onIndexChange={setActivePhotoIndex}
+          onClose={() => setActivePhotoIndex(null)}
+        />
+      )}
     </div>
   );
 }

@@ -3,7 +3,7 @@ import mcnLogo from "../../assets/mcn-logo.jpg";
 import johnWesleyPortrait from "../../assets/history/john-wesley.jpg";
 import charlesWesleyPortrait from "../../assets/history/charles-wesley.jpg";
 import thomasBirchFreemanPortrait from "../../assets/history/thomas-birch-freeman.png";
-import { methodistHistory } from "../../data/churchData";
+import { CHURCH_MISSION, methodistHistory } from "../../data/churchData";
 
 const founders = [
   {
@@ -49,7 +49,7 @@ const beliefs = [
   { title: "Holiness", text: "We are called to scriptural holiness, a life transformed by love of God and neighbour." },
   { title: "Sacraments", text: "Baptism and the Lord's Supper are sacred means of grace ordained by Christ." },
   { title: "Community", text: "The church is the body of Christ, called to worship, nurture, service, and witness together." },
-  { title: "Mission", text: "We are called to proclaim the Gospel to every person and transform every community." },
+  { title: "Mission", text: CHURCH_MISSION },
 ];
 
 export default function AboutPage() {

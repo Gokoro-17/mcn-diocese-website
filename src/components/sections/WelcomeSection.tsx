@@ -1,19 +1,17 @@
 import { ArrowRight, CalendarDays, Clock3, MapPin, Target, Telescope } from "lucide-react";
-import { contactInfo, serviceTimes, weeklyActivities } from "../../data/churchData";
+import { CHURCH_MISSION, CHURCH_VISION, contactInfo, serviceTimes, weeklyActivities } from "../../data/churchData";
 
 const welcomeCards = [
   {
     icon: <Target size={27} />,
     title: "Our Mission",
-    content:
-      "TO CONSISTENTLY WIN MORE SOULS FOR CHRIST, DEVELOP SPIRITUALLY FULFILLED MEMBERS AND REMAIN VERY ACTIVE IN SERVING HUMANITY.",
+    content: CHURCH_MISSION,
     color: "var(--church-red)",
   },
   {
     icon: <Telescope size={27} />,
     title: "Our Vision",
-    content:
-      "TO BE ONE OF THE LARGEST AND SPIRITUALLY VIBRANT CHURCHES IN NIGERIA.",
+    content: CHURCH_VISION,
     color: "var(--church-navy)",
   },
   {
