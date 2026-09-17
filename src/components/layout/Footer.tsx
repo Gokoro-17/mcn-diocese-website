@@ -15,38 +15,8 @@ export default function Footer({ onNavigate }: FooterProps) {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  const planVisit = () => {
-    onNavigate("home");
-    window.setTimeout(() => {
-      document.getElementById("visit")?.scrollIntoView({ behavior: "smooth", block: "start" });
-    }, 260);
-  };
-
   return (
     <footer style={{ background: "var(--church-navy-dark)", color: "rgba(255,255,255,0.85)" }}>
-      {/* Top CTA Band */}
-      <div
-        className="py-10 text-center text-white"
-        style={{ background: "var(--church-red)" }}
-      >
-        <h3
-          className="text-2xl md:text-3xl font-bold mb-2"
-          style={{ fontFamily: "Playfair Display, serif" }}
-        >
-          You&apos;re Welcome Here
-        </h3>
-        <p className="text-white/85 text-sm mb-5">
-          Join us for worship and fellowship at the Methodist Cathedral of Favour.
-        </p>
-        <button
-          onClick={planVisit}
-          className="px-8 py-3 bg-white text-sm font-bold rounded-full hover:shadow-lg hover:scale-105 transition-all"
-          style={{ color: "var(--church-red)" }}
-        >
-          Plan Your Visit
-        </button>
-      </div>
-
       {/* Main Footer Content */}
       <div className="max-w-7xl mx-auto px-6 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
