@@ -80,13 +80,6 @@ export default function Hero({ onNavigate }: HeroProps) {
     }, 500);
   }, [transitioning]);
 
-  useEffect(() => {
-    const id = setInterval(() => {
-      goToSlide((current + 1) % heroSlides.length);
-    }, 6000);
-    return () => clearInterval(id);
-  }, [current, goToSlide]);
-
   const slide = heroSlides[current];
 
   const pad = (n: number) => String(n).padStart(2, "0");
@@ -114,8 +107,6 @@ export default function Hero({ onNavigate }: HeroProps) {
             style={{
               top: `${10 + i * 12}%`,
               left: `${(i * 13) % 100}%`,
-              animation: `float ${4 + i * 0.5}s ease-in-out infinite`,
-              animationDelay: `${i * 0.4}s`,
               fontSize: `${40 + (i % 3) * 20}px`,
             }}
           >
@@ -137,7 +128,6 @@ export default function Hero({ onNavigate }: HeroProps) {
         {/* Logo */}
         <div
           className={`mb-6 transition-all duration-700 ${transitioning ? "opacity-0 scale-90" : "opacity-100 scale-100"}`}
-          style={{ animation: "float 4s ease-in-out infinite" }}
         >
           <div
             className="w-24 h-24 rounded-full overflow-hidden mx-auto shadow-2xl"
@@ -204,7 +194,7 @@ export default function Hero({ onNavigate }: HeroProps) {
             ].map((item) => (
               <div key={item.label} className="countdown-box">
                   <div
-                    className="text-2xl md:text-3xl font-bold text-white"
+                    className="text-2xl font-bold tabular-nums text-white md:text-3xl"
                     style={{ fontFamily: "Playfair Display, serif" }}
                   >
                     {item.value}
