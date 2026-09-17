@@ -39,7 +39,7 @@ export const weeklyActivities = [
       { time: "7:00 AM", name: "1st Service" },
       { time: "9:00 AM", name: "Sunday School" },
       { time: "10:00 AM", name: "2nd Service" },
-      { time: "3:00 PM", name: "YF Moment of Refreshing", note: "Except 1st Sundays" },
+      { time: "3:00 PM", name: "YF Time of Refreshing", note: "Every 1st Sunday" },
       { time: "7:00 AM", name: "Eucharistic & Empowerment Service", note: "Every 1st Sunday" },
     ],
   },
