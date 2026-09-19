@@ -356,57 +356,6 @@ export const bibleVerses = [
   { verse: "But those who hope in the LORD will renew their strength. They will soar on wings like eagles; they will run and not grow weary, they will walk and not be faint.", reference: "Isaiah 40:31", version: "NIV" },
 ];
 
-export const leaders = [
-  {
-    id: 1,
-    name: "The Rt. Rev. Barr. Otuekong Ukut, PhD",
-    position: "Bishop",
-    rank: 1,
-    description: "His Lordship, the Right Reverend Barr. Otuekong Ukut, PhD, leads with wisdom, integrity, and an unwavering commitment to the growth of God's Kingdom.",
-    image: null,
-  },
-  {
-    id: 2,
-    name: "The Very Rev. Ime A. Udo (JP)",
-    position: "Circuit Presbyter",
-    rank: 2,
-    description: "The Very Reverend Ime A. Udo (JP) serves with exceptional pastoral care and administrative excellence, overseeing the circuits of the diocese with grace and dedication.",
-    image: null,
-  },
-  {
-    id: 3,
-    name: "The Very Rev. Prof. Asindi A. Asindi (S)",
-    position: "Cathedral Minister",
-    rank: 3,
-    description: "The Very Reverend Prof. Asindi A. Asindi (S) is a gifted preacher, teacher, and administrator who faithfully oversees the ministry operations and pastoral activities across multiple circuits.",
-    image: null,
-  },
-  {
-    id: 4,
-    name: "The Rev. Clement Etukudo",
-    position: "Cathedral Minister",
-    rank: 4,
-    description: "Rev. Mrs. Comfort I. Nduka has transformed the Women's Fellowship through powerful discipleship programs, community outreach, and faithful spiritual leadership.",
-    image: null,
-  },
-  {
-    id: 5,
-    name: "Rev. David E. Okoro",
-    position: "Youth & Campus Coordinator",
-    rank: 5,
-    description: "Rev. David E. Okoro is the driving force behind youth ministry across the diocese, mentoring the next generation with passion, vision, and purpose centred on Christ.",
-    image: null,
-  },
-  {
-    id: 6,
-    name: "Deacon Mrs. Patience A. Eze",
-    position: "Diocesan Missions Director",
-    rank: 6,
-    description: "Deacon Mrs. Patience A. Eze coordinates all missionary and evangelism activities, ensuring the Great Commission remains central to everything the diocese does.",
-    image: null,
-  },
-];
-
 export const bankAccounts = [
   {
     id: 1,

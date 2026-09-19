@@ -1,4 +1,4 @@
-import { galleryItems, leaders as fallbackLeaders, sermons as fallbackSermons, type MinistryPresident } from "../data/churchData";
+import { galleryItems, sermons as fallbackSermons, type MinistryPresident } from "../data/churchData";
 import type { ChurchEventItem, GalleryMediaItem, LeaderItem, SermonItem, UploadedFile } from "../types/content";
 import { isSupabaseConfigured, supabase, supabaseProjectUrl } from "./supabase";
 
@@ -152,15 +152,7 @@ export async function fetchPublishedGallery(): Promise<GalleryMediaItem[]> {
 }
 
 export async function fetchPublishedLeaders(): Promise<LeaderItem[]> {
-  const fallback = fallbackLeaders.map((leader) => ({
-    id: leader.id,
-    name: leader.name,
-    position: leader.position,
-    description: leader.description,
-    imageUrl: leader.image,
-    displayOrder: leader.rank,
-  }));
-  if (!supabase) return fallback;
+  if (!supabase) return [];
 
   const { data, error } = await supabase
     .from("leaders")
@@ -171,11 +163,10 @@ export async function fetchPublishedLeaders(): Promise<LeaderItem[]> {
 
   if (error) {
     console.error("Could not load published leaders", error);
-    return fallback;
+    return [];
   }
 
-  if (!data?.length) return fallback;
-  return data.map((row) => ({
+  return (data ?? []).map((row) => ({
     id: row.id,
     name: row.name,
     position: row.position,
