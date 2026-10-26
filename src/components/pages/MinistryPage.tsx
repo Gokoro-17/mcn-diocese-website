@@ -1,24 +1,14 @@
 import { useEffect, useState } from "react";
-import { ArrowLeft, ArrowRight, ImageIcon, Mail, MessageCircle, Phone, ShieldCheck, UserRound } from "lucide-react";
-import { CHURCH_NAME, contactInfo, ministries, type Ministry } from "../../data/churchData";
+import { ArrowLeft, ArrowRight, ImageIcon, MessageCircle, Phone, ShieldCheck, UserRound } from "lucide-react";
+import { CHURCH_NAME, ministries, type Ministry } from "../../data/churchData";
 import { fetchMinistryContent, type MinistryContent } from "../../lib/media";
+import { whatsappContactLink } from "../../lib/whatsapp";
 import FullscreenMediaViewer from "../media/FullscreenMediaViewer";
 
 interface MinistryPageProps {
   ministry: Ministry;
   onBack: () => void;
   onOpenMinistry: (slug: string) => void;
-}
-
-function whatsappContactLink(value: string, ministryName: string) {
-  const message = `Hello, I would like to know more about joining the ${ministryName} at ${CHURCH_NAME}.`;
-  try {
-    const destination = value.startsWith("http") ? new URL(value) : new URL(`https://wa.me/${value.replace(/\D/g, "")}`);
-    destination.searchParams.set("text", message);
-    return destination.toString();
-  } catch {
-    return "";
-  }
 }
 
 export default function MinistryPage({ ministry, onBack, onOpenMinistry }: MinistryPageProps) {
@@ -62,8 +52,9 @@ export default function MinistryPage({ ministry, onBack, onOpenMinistry }: Minis
       }
     : ministry.president;
   const leaderTitle = president?.title ?? "President";
-  const whatsappUrl = president?.whatsapp ? whatsappContactLink(president.whatsapp, ministry.name) : "";
-  const officeEmailUrl = `mailto:${contactInfo.email}?subject=${encodeURIComponent(`Joining the ${ministry.name}`)}`;
+  const whatsappUrl = president?.whatsapp
+    ? whatsappContactLink(president.whatsapp, `Hello, I would like to know more about joining the ${ministry.name} at ${CHURCH_NAME}.`)
+    : "";
   const relatedMinistries = ministries.filter((item) => item.id !== ministry.id).slice(0, 3);
 
   return (
@@ -162,16 +153,6 @@ export default function MinistryPage({ ministry, onBack, onOpenMinistry }: Minis
                 <p className="mt-5 font-bold text-gray-700">President profile coming soon</p>
                 <p className="mt-2 text-sm leading-6 text-gray-500">The approved name, photograph and contact information will appear here once supplied.</p>
               </div>
-            )}
-          </article>
-
-          <article className="rounded-3xl p-6 text-white shadow-xl" style={{ background: ministry.color }}>
-            <h2 className="text-2xl font-bold" style={{ fontFamily: "Playfair Display, serif" }}>Interested in joining?</h2>
-            <p className="mt-3 text-sm leading-6 text-white/75">Reach out and the church will help connect you with the right ministry leader.</p>
-            {whatsappUrl ? (
-              <a href={whatsappUrl} target="_blank" rel="noreferrer" className="mt-6 flex items-center justify-center gap-2 rounded-xl bg-white px-4 py-3 text-sm font-bold" style={{ color: ministry.color }}><MessageCircle size={18} /> Join this ministry</a>
-            ) : (
-              <a href={officeEmailUrl} className="mt-6 flex items-center justify-center gap-2 rounded-xl bg-white px-4 py-3 text-sm font-bold" style={{ color: ministry.color }}><Mail size={18} /> Contact church office</a>
             )}
           </article>
         </aside>

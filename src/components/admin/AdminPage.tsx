@@ -30,6 +30,7 @@ import { ministries } from "../../data/churchData";
 import { loadAdminDraftFile, saveAdminDraftFile } from "../../lib/adminDrafts";
 import { facebookEmbedUrl, uploadMediaFile, youtubeEmbedUrl } from "../../lib/media";
 import { isSupabaseConfigured, supabase } from "../../lib/supabase";
+import { whatsappContactLink } from "../../lib/whatsapp";
 
 type Tab = "upload" | "library";
 type UploadKind = "gallery" | "sermon" | "leader" | "event" | "ministry";
@@ -1200,6 +1201,12 @@ function MinistryManager() {
   async function saveProfile(event: FormEvent) {
     event.preventDefault();
     if (!supabase) return;
+    const whatsappLink = whatsappContactLink(leaderWhatsapp);
+    if (leaderWhatsapp.trim() && !whatsappLink) {
+      setNotice("");
+      setError("Enter a valid WhatsApp number (e.g. 08012345678 or +2348012345678) or an official WhatsApp link.");
+      return;
+    }
     setSavingProfile(true);
     setError("");
     setNotice("");
@@ -1228,7 +1235,7 @@ function MinistryManager() {
             leader_name: leaderName.trim(),
             leader_title: leaderTitle.trim() || "President",
             leader_phone: leaderPhone.trim(),
-            leader_whatsapp: leaderWhatsapp.trim(),
+            leader_whatsapp: whatsappLink,
             leader_photo_url: nextPortraitUrl,
             leader_photo_storage_bucket: nextPortraitBucket,
             leader_photo_storage_path: nextPortraitPath,
@@ -1411,7 +1418,8 @@ function MinistryManager() {
               </label>
               <label className="block">
                 <span className="mb-2 block text-sm font-bold text-slate-700">WhatsApp number or link</span>
-                <input className={inputClass} value={leaderWhatsapp} onChange={(event) => setLeaderWhatsapp(event.target.value)} placeholder="Optional" />
+                <input className={inputClass} value={leaderWhatsapp} onChange={(event) => setLeaderWhatsapp(event.target.value)} placeholder="e.g. 08012345678 or +2348012345678" aria-describedby="leader-whatsapp-help" />
+                <span id="leader-whatsapp-help" className="mt-2 block text-xs text-slate-500">Optional. Nigerian local numbers are supported, or paste an official WhatsApp link.</span>
               </label>
             </div>
             <div className="grid gap-5 md:grid-cols-[12rem_1fr] md:items-center">
