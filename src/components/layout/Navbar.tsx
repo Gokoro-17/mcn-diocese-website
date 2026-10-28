@@ -38,7 +38,6 @@ export default function Navbar({ currentPage, onNavigate }: NavbarProps) {
   const handleNav = (page: string) => {
     onNavigate(page);
     setMenuOpen(false);
-    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const handleVisit = () => {

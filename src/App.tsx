@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useLayoutEffect } from "react";
 import Navbar from "./components/layout/Navbar";
 import Footer from "./components/layout/Footer";
 import HomePage from "./components/pages/HomePage";
@@ -72,15 +72,30 @@ export default function App() {
   const [routePath, setRoutePath] = useState(window.location.pathname);
   const activeMinistry = currentPage === "ministry" ? ministryFromPath(routePath) : undefined;
 
+  useLayoutEffect(() => {
+    const previousScrollRestoration = window.history.scrollRestoration;
+    window.history.scrollRestoration = "manual";
+    return () => {
+      window.history.scrollRestoration = previousScrollRestoration;
+    };
+  }, []);
+
+  useLayoutEffect(() => {
+    // Reset after the new page renders, before it is painted, overriding smooth scrolling.
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+  }, [routePath]);
+
   const navigateTo = (nextPage: Page, path: string) => {
-    if (nextPage === currentPage && window.location.pathname === path) return;
+    if (nextPage === currentPage && window.location.pathname === path) {
+      window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+      return;
+    }
     setPageVisible(false);
     setTimeout(() => {
       setCurrentPage(nextPage);
       window.history.pushState({}, "", path);
       setRoutePath(path);
       setPageVisible(true);
-      window.scrollTo({ top: 0, behavior: "smooth" });
     }, 200);
   };
 
@@ -105,7 +120,6 @@ export default function App() {
       setCurrentPage(pageFromPath());
       setRoutePath(window.location.pathname);
       setPageVisible(true);
-      window.scrollTo({ top: 0 });
     };
     window.addEventListener("popstate", handlePopState);
     return () => window.removeEventListener("popstate", handlePopState);

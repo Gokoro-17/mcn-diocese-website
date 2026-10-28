@@ -10,11 +10,6 @@ interface FooterProps {
 export default function Footer({ onNavigate }: FooterProps) {
   const year = new Date().getFullYear();
 
-  const scrollAndNav = (page: string) => {
-    onNavigate(page);
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
-
   return (
     <footer style={{ background: "var(--church-navy-dark)", color: "rgba(255,255,255,0.85)" }}>
       {/* Main Footer Content */}
@@ -69,7 +64,7 @@ export default function Footer({ onNavigate }: FooterProps) {
               ].map((link) => (
                 <li key={link.page}>
                   <button
-                    onClick={() => scrollAndNav(link.page)}
+                    onClick={() => onNavigate(link.page)}
                     className="text-sm text-white/70 hover:text-white flex items-center gap-2 transition-colors"
                   >
                     <ChevronRight size={14} style={{ color: "var(--church-red)" }} />
@@ -149,7 +144,7 @@ export default function Footer({ onNavigate }: FooterProps) {
         <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-2">
           <p>© {year} {CHURCH_NAME} · {DENOMINATION_NAME}. All rights reserved.</p>
           <div className="flex items-center gap-3">
-            <button onClick={() => scrollAndNav("admin")} className="text-white/30 transition-colors hover:text-white/70">Content Admin</button>
+            <button onClick={() => onNavigate("admin")} className="text-white/30 transition-colors hover:text-white/70">Content Admin</button>
           </div>
         </div>
       </div>
