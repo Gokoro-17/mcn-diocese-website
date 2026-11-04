@@ -161,27 +161,6 @@ export default function WelcomeSection() {
           </div>
         </div>
 
-        {/* Scripture Banner */}
-        <div
-          className="mt-16 rounded-2xl p-8 text-center text-white"
-          style={{
-            background: "linear-gradient(135deg, var(--church-navy) 0%, var(--church-navy-dark) 100%)",
-          }}
-        >
-          <p
-            className="text-xl md:text-2xl font-medium italic mb-3 leading-relaxed"
-            style={{ fontFamily: "Playfair Display, serif" }}
-          >
-            "Not forsaking the assembling of ourselves together, as the manner of some is; but exhorting
-            one another: and so much the more, as ye see the day approaching."
-          </p>
-          <span
-            className="text-sm font-bold uppercase tracking-widest"
-            style={{ color: "var(--church-gold-light)" }}
-          >
-            Hebrews 10:25 (KJV)
-          </span>
-        </div>
       </div>
     </section>
   );
