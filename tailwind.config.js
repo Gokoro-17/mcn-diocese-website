@@ -17,8 +17,8 @@ export default {
         "church-cream":      "#FEF9F0",
       },
       fontFamily: {
-        serif:  ["Playfair Display", "Georgia", "serif"],
-        sans:   ["Nunito Sans", "system-ui", "sans-serif"],
+        serif:  ["var(--font-heading)"],
+        sans:   ["var(--font-body)"],
       },
       animation: {
         "fade-up":    "fadeInUp 0.7s ease forwards",

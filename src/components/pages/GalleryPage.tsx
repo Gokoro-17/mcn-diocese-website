@@ -40,7 +40,7 @@ export default function GalleryPage() {
         <div className="pointer-events-none absolute inset-0 overflow-hidden">{[...Array(8)].map((_, index) => <ImageIcon key={index} className="absolute text-white/5" size={72} style={{ top: `${10 + index * 10}%`, left: `${index * 13}%`, transform: `rotate(${index * 20}deg)` }} />)}</div>
         <div className="relative z-10 mx-auto max-w-4xl px-6 text-center">
           <div className="mb-3 text-xs font-semibold uppercase tracking-[0.3em]" style={{ color: "var(--church-gold-light)" }}>Moments of Faith</div>
-          <h1 className="mb-5 text-4xl font-bold md:text-6xl" style={{ fontFamily: "Playfair Display, serif" }}>Gallery</h1>
+          <h1 className="mb-5 text-4xl font-bold md:text-6xl" style={{ fontFamily: "var(--font-heading)" }}>Gallery</h1>
           <p className="mx-auto max-w-xl leading-relaxed text-white/70">A glimpse into worship and community at the Methodist Cathedral of Favour, captured in moments that speak of God&apos;s faithfulness.</p>
         </div>
         <div className="absolute bottom-0 left-0 right-0"><svg viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full"><path d="M0 60L720 0L1440 60H0Z" fill="var(--church-cream)" /></svg></div>
@@ -81,7 +81,7 @@ export default function GalleryPage() {
           )}
 
           <div className="mt-16 grid grid-cols-2 gap-6 rounded-2xl p-8 text-center text-white md:grid-cols-4" style={{ background: "linear-gradient(135deg, var(--church-navy) 0%, var(--church-navy-dark) 100%)" }}>
-            {[{ number: String(items.length), label: "Published Moments" }, { number: String(videoCount), label: "Videos" }, { number: String(items.length - videoCount), label: "Photos" }, { number: String(new Set(items.map((item) => item.category)).size), label: "Collections" }].map((stat) => <div key={stat.label}><div className="text-3xl font-bold" style={{ fontFamily: "Playfair Display, serif", color: "var(--church-gold-light)" }}>{stat.number}</div><div className="mt-1 text-sm text-white/60">{stat.label}</div></div>)}
+            {[{ number: String(items.length), label: "Published Moments" }, { number: String(videoCount), label: "Videos" }, { number: String(items.length - videoCount), label: "Photos" }, { number: String(new Set(items.map((item) => item.category)).size), label: "Collections" }].map((stat) => <div key={stat.label}><div className="text-3xl font-bold" style={{ fontFamily: "var(--font-heading)", color: "var(--church-gold-light)" }}>{stat.number}</div><div className="mt-1 text-sm text-white/60">{stat.label}</div></div>)}
           </div>
         </div>
       </section>

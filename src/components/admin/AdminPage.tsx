@@ -31,8 +31,9 @@ import { loadAdminDraftFile, saveAdminDraftFile } from "../../lib/adminDrafts";
 import { facebookEmbedUrl, uploadMediaFile, youtubeEmbedUrl } from "../../lib/media";
 import { isSupabaseConfigured, supabase } from "../../lib/supabase";
 import { whatsappContactLink } from "../../lib/whatsapp";
+import OnlineAdmin from "./OnlineAdmin";
 
-type Tab = "upload" | "library";
+type Tab = "upload" | "library" | "online";
 type UploadKind = "gallery" | "sermon" | "leader" | "event" | "ministry";
 type ContentTable = "sermons" | "media_items" | "leaders" | "church_events";
 
@@ -1423,8 +1424,8 @@ function MinistryManager() {
               </label>
             </div>
             <div className="grid gap-5 md:grid-cols-[12rem_1fr] md:items-center">
-              <div className="flex h-48 items-center justify-center overflow-hidden rounded-2xl bg-slate-100">
-                {currentPortraitUrl ? <img src={currentPortraitUrl} alt={leaderName || "Current ministry leader"} className="h-full w-full object-cover" /> : <UserPlus size={48} className="text-slate-300" />}
+              <div className={`overflow-hidden rounded-2xl bg-slate-100 ${currentPortraitUrl ? "" : "flex h-48 items-center justify-center"}`}>
+                {currentPortraitUrl ? <img src={currentPortraitUrl} alt={leaderName || "Current ministry leader"} className="block h-auto w-full object-contain" /> : <UserPlus size={48} className="text-slate-300" />}
               </div>
               <label className="block cursor-pointer rounded-2xl border-2 border-dashed border-slate-300 bg-slate-50 p-7 text-center transition hover:border-green-500">
                 <UserPlus className="mx-auto text-green-700" size={32} />
@@ -1461,7 +1462,7 @@ function MinistryManager() {
               <div className="grid gap-4 pt-3 sm:grid-cols-2 lg:grid-cols-3">
                 {gallery.map((photo) => (
                   <article key={photo.id} className="overflow-hidden rounded-2xl border border-slate-200 bg-white">
-                    <img src={photo.image_url} alt={photo.title || "Ministry activity"} className="h-40 w-full object-cover" loading="lazy" />
+                    <img src={photo.image_url} alt={photo.title || "Ministry activity"} className="block h-auto w-full object-contain" loading="lazy" />
                     <div className="p-3">
                       <p className="truncate text-sm font-bold text-slate-800">{photo.title || "Ministry activity"}</p>
                       <p className={`mt-1 text-xs font-semibold ${photo.is_published ? "text-green-700" : "text-amber-700"}`}>{photo.is_published ? "Visible on website" : "Hidden from website"}</p>
@@ -1839,7 +1840,7 @@ function Dashboard({ user }: { user: User }) {
             {notice}
           </div>
         )}
-        <div className="mb-6 flex gap-2 rounded-2xl bg-white p-2 shadow-sm">
+        <div className="mb-6 flex flex-wrap gap-2 rounded-2xl bg-white p-2 shadow-sm">
           <button
             onClick={() => setTab("upload")}
             className={`flex-1 rounded-xl px-4 py-3 text-sm font-bold ${tab === "upload" ? "bg-red-700 text-white" : "text-slate-600 hover:bg-slate-50"}`}
@@ -1853,10 +1854,11 @@ function Dashboard({ user }: { user: User }) {
             Manage content (
             {sermons.length + media.length + leaders.length + events.length})
           </button>
+          <button onClick={() => setTab("online")} className={`flex-1 rounded-xl px-4 py-3 text-sm font-bold ${tab === "online" ? "bg-red-700 text-white" : "text-slate-600 hover:bg-slate-50"}`}>Church online</button>
         </div>
 
         <section className="rounded-3xl bg-white p-5 shadow-sm md:p-8">
-          {tab === "upload" ? (
+          {tab === "online" ? <OnlineAdmin /> : tab === "upload" ? (
             <>
               <div className="mb-8 grid grid-cols-2 gap-3 lg:grid-cols-5">
                 <button

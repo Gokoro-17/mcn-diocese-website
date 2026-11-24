@@ -33,7 +33,7 @@ const welcomeCards = [
 
 export default function WelcomeSection() {
   return (
-    <section id="visit" className="scroll-mt-24 py-20 md:py-28" style={{ background: "var(--church-cream)" }}>
+    <section id="visit" className="scroll-mt-36 py-20 md:py-28" style={{ background: "var(--church-cream)" }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Heading */}
         <div className="text-center mb-16">
@@ -82,7 +82,7 @@ export default function WelcomeSection() {
 
               <h3
                 className="text-lg font-bold mb-3"
-                style={{ fontFamily: "Playfair Display, serif", color: "var(--church-navy)" }}
+                style={{ fontFamily: "var(--font-heading)", color: "var(--church-navy)" }}
               >
                 {card.title}
               </h3>
@@ -129,7 +129,7 @@ export default function WelcomeSection() {
               <div className="mb-2 text-xs font-semibold uppercase tracking-[0.3em]" style={{ color: "var(--church-red)" }}>
                 Join Us This Week
               </div>
-              <h3 className="text-2xl font-bold md:text-3xl" style={{ fontFamily: "Playfair Display, serif", color: "var(--church-navy)" }}>
+              <h3 className="text-2xl font-bold md:text-3xl" style={{ fontFamily: "var(--font-heading)", color: "var(--church-navy)" }}>
                 Weekly Activities
               </h3>
             </div>

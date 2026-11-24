@@ -22,7 +22,7 @@ export default function Footer({ onNavigate }: FooterProps) {
                 <img src={mcnLogo} alt="MCN Logo" className="w-full h-full object-cover" />
               </div>
               <div>
-                <div className="font-bold text-white text-sm" style={{ fontFamily: "Playfair Display, serif" }}>
+                <div className="font-bold text-white text-sm" style={{ fontFamily: "var(--font-heading)" }}>
                   {CHURCH_NAME}
                 </div>
                 <div className="text-xs" style={{ color: "var(--church-gold-light)" }}>{DENOMINATION_NAME}</div>
@@ -47,7 +47,7 @@ export default function Footer({ onNavigate }: FooterProps) {
             <h4
               className="text-base font-bold text-white mb-5 pb-2"
               style={{
-                fontFamily: "Playfair Display, serif",
+                fontFamily: "var(--font-heading)",
                 borderBottom: "2px solid var(--church-red)",
                 display: "inline-block",
               }}
@@ -61,6 +61,9 @@ export default function Footer({ onNavigate }: FooterProps) {
                 { label: "Leadership", page: "leadership" },
                 { label: "Gallery", page: "gallery" },
                 { label: "Giving", page: "giving" },
+                { label: "Watch Live", page: "live" },
+                { label: "Prayer Requests", page: "prayer" },
+                { label: "Members Portal", page: "members" },
               ].map((link) => (
                 <li key={link.page}>
                   <button
@@ -80,7 +83,7 @@ export default function Footer({ onNavigate }: FooterProps) {
             <h4
               className="text-base font-bold text-white mb-5 pb-2"
               style={{
-                fontFamily: "Playfair Display, serif",
+                fontFamily: "var(--font-heading)",
                 borderBottom: "2px solid var(--church-red)",
                 display: "inline-block",
               }}
@@ -102,7 +105,7 @@ export default function Footer({ onNavigate }: FooterProps) {
             <h4
               className="text-base font-bold text-white mb-5 pb-2"
               style={{
-                fontFamily: "Playfair Display, serif",
+                fontFamily: "var(--font-heading)",
                 borderBottom: "2px solid var(--church-red)",
                 display: "inline-block",
               }}

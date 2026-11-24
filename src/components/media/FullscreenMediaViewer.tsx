@@ -206,7 +206,7 @@ export default function FullscreenMediaViewer({
             </div>
           )}
           {item.title && (
-            <h2 className="mt-1 text-xl font-bold sm:text-2xl" style={{ fontFamily: "Playfair Display, serif" }}>
+            <h2 className="mt-1 text-xl font-bold sm:text-2xl" style={{ fontFamily: "var(--font-heading)" }}>
               {item.title}
             </h2>
           )}

@@ -3,6 +3,7 @@ import WelcomeSection from "../sections/WelcomeSection";
 import SermonsSection from "../sections/SermonsSection";
 import EventsSection from "../sections/EventsSection";
 import MinistriesSection from "../sections/MinistriesSection";
+import OnlineCommunitySection from "../sections/OnlineCommunitySection";
 import { BibleVerseSection, ContactSection } from "../sections/InteractiveSections";
 
 interface HomePageProps {
@@ -14,6 +15,7 @@ export default function HomePage({ onNavigate, onOpenMinistry }: HomePageProps) 
   return (
     <div>
       <Hero onNavigate={onNavigate} />
+      <OnlineCommunitySection onNavigate={onNavigate} />
       <WelcomeSection />
       <SermonsSection />
       <EventsSection />

@@ -406,17 +406,3 @@ export const galleryItems = Array.from({ length: 18 }, (_, i) => ({
   ][i],
   image: null,
 }));
-
-export const methodistHistory = {
-  founding: "1844",
-  founderInNigeria: "Rev. Thomas Birch Freeman",
-  globalFounger: "Rev. John Wesley",
-  globalFounded: "1739",
-  description: `The Methodist Church Nigeria traces its roots to the pioneering work of the Wesleyan Methodist Missionary Society, which sent the Rev. Thomas Birch Freeman to Nigeria in 1842. His arrival in Badagry marked the beginning of a rich spiritual heritage that has since expanded across every corner of Nigeria.
-
-The Methodist Church Nigeria was formally constituted as an autonomous church in 1962, and has since grown into one of the largest Protestant denominations in West Africa, with millions of faithful members organized into dozens of dioceses.
-
-The Methodist Cathedral of Favour serves its community through the full ministry of Word, Sacrament, and Fellowship, rooted in the Wesleyan tradition of scriptural holiness, social engagement, and evangelical fervour.
-
-The Cathedral continues to be a beacon of light through worship, discipleship, compassionate service, and the proclamation of the Gospel. It declares that worthy is indeed the Lamb.`,
-};

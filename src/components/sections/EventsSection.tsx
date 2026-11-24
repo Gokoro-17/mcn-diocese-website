@@ -39,11 +39,11 @@ export default function EventsSection() {
   }, []);
 
   return (
-    <section className="relative overflow-hidden py-20 md:py-28" style={{ background: "linear-gradient(160deg, var(--church-navy-dark) 0%, var(--church-navy) 60%, var(--church-navy-dark) 100%)" }}>
+    <section id="events" className="relative scroll-mt-36 overflow-hidden py-20 md:py-28" style={{ background: "linear-gradient(160deg, var(--church-navy-dark) 0%, var(--church-navy) 60%, var(--church-navy-dark) 100%)" }}>
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mb-16 text-center">
           <div className="mb-3 text-xs font-semibold uppercase tracking-[0.3em]" style={{ color: "var(--church-gold-light)" }}>Mark Your Calendar</div>
-          <h2 className="section-title centered text-3xl font-bold text-white md:text-5xl" style={{ fontFamily: "Playfair Display, serif" }}>Upcoming Events</h2>
+          <h2 className="section-title centered text-3xl font-bold text-white md:text-5xl" style={{ fontFamily: "var(--font-heading)" }}>Upcoming Events</h2>
           <p className="mx-auto mt-5 max-w-xl text-sm leading-relaxed text-white/60">Plan ahead for worship, fellowship, celebrations, and special programmes at the Methodist Cathedral of Favour.</p>
         </div>
 
@@ -60,11 +60,11 @@ export default function EventsSection() {
                     <div className="mb-5 flex items-start gap-4">
                       <div className="flex h-16 w-16 shrink-0 flex-col items-center justify-center rounded-xl text-white shadow-lg" style={{ background: event.color }}>
                         <span className="text-xs font-bold uppercase tracking-wider">{monthFormatter.format(start)}</span>
-                        <span className="text-xl font-black" style={{ fontFamily: "Playfair Display, serif" }}>{dayFormatter.format(start)}</span>
+                        <span className="text-xl font-black" style={{ fontFamily: "var(--font-heading)" }}>{dayFormatter.format(start)}</span>
                       </div>
                       <div className="min-w-0">
                         <span className="text-[10px] font-bold uppercase tracking-[0.18em]" style={{ color: event.color }}>{event.category}</span>
-                        <h3 className="mt-1 text-lg font-bold leading-tight text-white" style={{ fontFamily: "Playfair Display, serif" }}>{event.title}</h3>
+                        <h3 className="mt-1 text-lg font-bold leading-tight text-white" style={{ fontFamily: "var(--font-heading)" }}>{event.title}</h3>
                       </div>
                     </div>
                     <div className="space-y-2 text-xs text-white/65">

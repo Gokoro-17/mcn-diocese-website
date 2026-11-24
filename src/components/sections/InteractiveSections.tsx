@@ -49,7 +49,7 @@ export function BibleVerseSection() {
       {/* Big decorative quote mark */}
       <div
         className="absolute top-0 left-4 text-white/5 select-none pointer-events-none"
-        style={{ fontSize: "300px", lineHeight: 1, fontFamily: "Playfair Display, serif" }}
+        style={{ fontSize: "300px", lineHeight: 1, fontFamily: "var(--font-heading)" }}
       >
         "
       </div>
@@ -65,7 +65,7 @@ export function BibleVerseSection() {
           </div>
           <h2
             className="text-3xl md:text-4xl font-bold text-white"
-            style={{ fontFamily: "Playfair Display, serif" }}
+            style={{ fontFamily: "var(--font-heading)" }}
           >
             Daily Bible Verse
           </h2>
@@ -101,7 +101,7 @@ export function BibleVerseSection() {
 
           <p
             className="text-xl md:text-2xl lg:text-3xl text-white leading-relaxed font-medium italic mb-6"
-            style={{ fontFamily: "Playfair Display, serif" }}
+            style={{ fontFamily: "var(--font-heading)" }}
           >
             "{verse.verse}"
           </p>
@@ -283,7 +283,7 @@ export function ContactSection() {
             <div className="space-y-5">
                 <h3
                   className="text-xl font-bold mb-6"
-                  style={{ fontFamily: "Playfair Display, serif", color: "var(--church-navy)" }}
+                  style={{ fontFamily: "var(--font-heading)", color: "var(--church-navy)" }}
                 >
                   Send Us a Message
                 </h3>

@@ -8,10 +8,13 @@ import GalleryPage from "./components/pages/GalleryPage";
 import GivingPage from "./components/pages/GivingPage";
 import MinistryPage from "./components/pages/MinistryPage";
 import AdminPage from "./components/admin/AdminPage";
+import LivePage from "./components/pages/LivePage";
+import PrayerPage from "./components/pages/PrayerPage";
+import MembersPage from "./components/pages/MembersPage";
 import { ministries } from "./data/churchData";
 import "./index.css";
 
-type Page = "home" | "about" | "leadership" | "gallery" | "giving" | "ministry" | "admin";
+type Page = "home" | "about" | "leadership" | "gallery" | "giving" | "ministry" | "admin" | "live" | "prayer" | "members";
 type StaticPage = Exclude<Page, "ministry">;
 
 const pathByPage: Record<StaticPage, string> = {
@@ -21,16 +24,22 @@ const pathByPage: Record<StaticPage, string> = {
   gallery: "/gallery",
   giving: "/giving",
   admin: "/admin",
+  live: "/live",
+  prayer: "/prayer",
+  members: "/members",
 };
 
 const pageMeta: Record<Page, { title: string; description: string }> = {
+  live: { title: "Watch Live | The Methodist Cathedral of Favour", description: "Join our online worship and find upcoming broadcasts from the Cathedral of Favour." },
+  prayer: { title: "Prayer Requests | The Methodist Cathedral of Favour", description: "Share a private prayer request with the church." },
+  members: { title: "Members Portal | The Methodist Cathedral of Favour", description: "Your personal church profile, prayer history, worship services, and events." },
   home: {
     title: "The Methodist Cathedral of Favour | Calabar",
     description: "Worship, fellowship, sermons, events, and community at The Methodist Cathedral of Favour in Calabar, Nigeria.",
   },
   about: {
     title: "About Us | The Methodist Cathedral of Favour",
-    description: "Discover our Methodist heritage, beliefs, mission, and ministry in Calabar.",
+    description: "Explore the local story, documented milestones, beliefs, and church life of the Cathedral of Favour at 79 Atamunu Street, Calabar.",
   },
   leadership: {
     title: "Church Leadership | The Methodist Cathedral of Favour",
@@ -81,6 +90,10 @@ export default function App() {
   }, []);
 
   useLayoutEffect(() => {
+    if (routePath === "/" && window.location.hash) {
+      const section = document.getElementById(window.location.hash.slice(1));
+      if (section) { section.scrollIntoView({ behavior: "instant", block: "start" }); return; }
+    }
     // Reset after the new page renders, before it is painted, overriding smooth scrolling.
     window.scrollTo({ top: 0, left: 0, behavior: "instant" });
   }, [routePath]);
@@ -146,6 +159,9 @@ export default function App() {
         return activeMinistry ? <MinistryPage ministry={activeMinistry} onBack={handleBackToMinistries} onOpenMinistry={handleOpenMinistry} /> : <HomePage onNavigate={handleNavigate} onOpenMinistry={handleOpenMinistry} />;
       }
       case "admin":     return <AdminPage />;
+      case "live":      return <LivePage onNavigate={handleNavigate} />;
+      case "prayer":    return <PrayerPage onNavigate={handleNavigate} />;
+      case "members":   return <MembersPage onNavigate={handleNavigate} />;
       default:          return <HomePage onNavigate={handleNavigate} onOpenMinistry={handleOpenMinistry} />;
     }
   };

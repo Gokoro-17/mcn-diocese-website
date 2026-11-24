@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
+import { HeartHandshake, Menu, Radio, UsersRound, X } from "lucide-react";
 import mcnLogo from "../../assets/mcn-logo.jpg";
 import { CHURCH_NAME, DENOMINATION_NAME } from "../../data/churchData";
 
@@ -14,6 +14,11 @@ const navLinks = [
   { label: "Leadership", page: "leadership" },
   { label: "Gallery", page: "gallery" },
   { label: "Giving", page: "giving" },
+];
+const onlineLinks = [
+  { label: "Watch live", page: "live", Icon: Radio },
+  { label: "Prayer requests", page: "prayer", Icon: HeartHandshake },
+  { label: "Members", page: "members", Icon: UsersRound },
 ];
 
 export default function Navbar({ currentPage, onNavigate }: NavbarProps) {
@@ -84,7 +89,7 @@ export default function Navbar({ currentPage, onNavigate }: NavbarProps) {
               <div className="max-w-[190px] text-left sm:max-w-none">
                 <div
                   className="text-xs font-bold leading-tight text-white sm:text-sm"
-                  style={{ fontFamily: "Playfair Display, serif", letterSpacing: "0.03em" }}
+                  style={{ fontFamily: "var(--font-heading)", letterSpacing: "0.03em" }}
                 >
                   {CHURCH_NAME}
                 </div>
@@ -98,7 +103,7 @@ export default function Navbar({ currentPage, onNavigate }: NavbarProps) {
             </button>
 
             {/* Desktop Nav Links */}
-            <div className="hidden md:flex items-center gap-1">
+            <div className="hidden xl:flex items-center gap-1">
               {navLinks.map((link) => (
                 <button
                   key={link.page}
@@ -108,7 +113,7 @@ export default function Navbar({ currentPage, onNavigate }: NavbarProps) {
                       ? "text-white bg-white/10"
                       : "text-white/80 hover:text-white hover:bg-white/10"
                   } ${currentPage === link.page ? "active" : ""}`}
-                  style={{ fontFamily: "Nunito Sans, sans-serif" }}
+                  style={{ fontFamily: "var(--font-body)" }}
                   aria-current={currentPage === link.page ? "page" : undefined}
                 >
                   {link.label}
@@ -119,7 +124,7 @@ export default function Navbar({ currentPage, onNavigate }: NavbarProps) {
                 className="ml-3 px-5 py-2.5 text-sm font-bold rounded-full text-white transition-all duration-200 hover:shadow-lg hover:scale-105"
                 style={{
                   background: "var(--church-red)",
-                  fontFamily: "Nunito Sans, sans-serif",
+                  fontFamily: "var(--font-body)",
                 }}
               >
                 Plan a Visit
@@ -128,7 +133,7 @@ export default function Navbar({ currentPage, onNavigate }: NavbarProps) {
 
             {/* Hamburger */}
             <button
-              className="flex p-2 text-white md:hidden"
+              className="flex p-2 text-white xl:hidden"
               onClick={() => setMenuOpen(!menuOpen)}
               aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"}
               aria-expanded={menuOpen}
@@ -143,11 +148,11 @@ export default function Navbar({ currentPage, onNavigate }: NavbarProps) {
         {menuOpen && (
           <div
             id="mobile-navigation"
-            className="md:hidden mobile-menu-enter border-t border-white/10"
+            className="xl:hidden mobile-menu-enter border-t border-white/10"
             style={{ background: "var(--church-navy-dark)" }}
           >
             <div className="px-4 py-4 space-y-1">
-              {navLinks.map((link) => (
+              {[...navLinks, ...onlineLinks].map((link) => (
                 <button
                   key={link.page}
                   onClick={() => handleNav(link.page)}
@@ -156,7 +161,7 @@ export default function Navbar({ currentPage, onNavigate }: NavbarProps) {
                       ? "bg-white/15 text-white"
                       : "text-white/80 hover:bg-white/10 hover:text-white"
                   }`}
-                  style={{ fontFamily: "Nunito Sans, sans-serif" }}
+                  style={{ fontFamily: "var(--font-body)" }}
                   aria-current={currentPage === link.page ? "page" : undefined}
                 >
                   {link.label}
@@ -174,6 +179,12 @@ export default function Navbar({ currentPage, onNavigate }: NavbarProps) {
             </div>
           </div>
         )}
+        <div className="border-t border-white/10 bg-black/10">
+          <div className="mx-auto flex max-w-7xl items-center justify-center px-3 sm:justify-between sm:px-6 lg:px-8">
+            <span className="hidden text-[10px] font-medium uppercase tracking-[0.18em] text-white/50 sm:block">Worship · Prayer · Fellowship</span>
+            <div className="flex items-center gap-1 sm:gap-3">{onlineLinks.map(({ page, label, Icon }) => <button key={page} onClick={() => handleNav(page)} aria-current={currentPage === page ? "page" : undefined} className={`flex min-h-11 items-center gap-2 rounded px-2.5 text-[11px] font-semibold transition sm:text-xs ${currentPage === page ? "text-amber-200" : "text-white/75 hover:text-white"}`}><Icon size={14} />{label}</button>)}</div>
+          </div>
+        </div>
       </nav>
     </>
   );

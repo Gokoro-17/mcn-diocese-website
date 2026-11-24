@@ -1,268 +1,307 @@
-import { Cross, UserRound } from "lucide-react";
+import {
+  BookOpen,
+  Cross,
+  HeartHandshake,
+  MapPin,
+  UsersRound,
+} from "lucide-react";
 import mcnLogo from "../../assets/mcn-logo.jpg";
-import johnWesleyPortrait from "../../assets/history/john-wesley.jpg";
-import charlesWesleyPortrait from "../../assets/history/charles-wesley.jpg";
-import thomasBirchFreemanPortrait from "../../assets/history/thomas-birch-freeman.png";
-import { CHURCH_MISSION, methodistHistory } from "../../data/churchData";
+import {
+  CHURCH_MISSION,
+  CHURCH_NAME,
+  TAGLINE,
+  contactInfo,
+} from "../../data/churchData";
+import {
+  localChurchMilestones,
+  localHistorySources,
+} from "../../data/localChurchHistory";
 
-const founders = [
+const churchLife = [
   {
-    name: "Rev. John Wesley",
-    role: "Founder of Methodism",
-    period: "1703 to 1791",
-    description:
-      "John Wesley was an English cleric and theologian who, with his brother Charles Wesley, founded the Methodist movement. His emphasis on personal holiness, grace, and social justice laid the foundation for one of Christianity's great branches.",
-    color: "var(--church-navy)",
-    image: johnWesleyPortrait,
+    title: "Worship and prayer",
+    text: "Sunday worship, Holy Communion, Bible study, prayer, and the ministry of our choirs bring our church family together around the Word of God.",
+    Icon: BookOpen,
   },
   {
-    name: "Charles Wesley",
-    role: "Cofounder and Hymn Writer",
-    period: "1707 to 1788",
-    description:
-      "Charles Wesley was a prolific hymn writer who penned over 6,000 hymns, including beloved classics like 'O for a Thousand Tongues to Sing.' His lyrical genius gave Methodism its distinctive musical voice.",
-    color: "var(--church-red)",
-    image: charlesWesleyPortrait,
+    title: "Growing together",
+    text: "Our children's ministry, youth fellowship, and fellowships for women and men provide places to learn, build friendships, and take part in church life.",
+    Icon: UsersRound,
   },
   {
-    name: "Rev. Thomas Birch Freeman",
-    role: "Pioneer in Nigeria",
-    period: "1809 to 1890",
-    description:
-      "The Rev. Thomas Birch Freeman was a Methodist missionary of British and Ghanaian heritage who brought the Methodist faith to Nigeria in 1842. His arrival in Badagry marked the beginning of a rich spiritual heritage that now reaches millions across Nigeria.",
-    color: "var(--church-green)",
-    image: thomasBirchFreemanPortrait,
+    title: "Faith expressed in service",
+    text: "We seek to live out our faith through evangelism, compassionate care, and service to the people around us in Calabar.",
+    Icon: HeartHandshake,
   },
-];
-
-const milestones = [
-  { year: "1739", event: "John Wesley begins the Methodist movement in England" },
-  { year: "1842", event: "Rev. T.B. Freeman arrives in Badagry, Nigeria" },
-  { year: "1844", event: "Methodist Church formally established in Nigeria" },
-  { year: "1962", event: "Methodist Church Nigeria gains full autonomy" },
-  { year: "Today", event: "The Methodist Cathedral of Favour continues its mission of worship, discipleship, and service" },
 ];
 
 const beliefs = [
-  { title: "Scripture", text: "The Holy Bible is the inspired Word of God, the ultimate rule for faith and practice." },
-  { title: "Grace", text: "We believe in prevenient, justifying, and sanctifying grace, which is God's unmerited love reaching every soul." },
-  { title: "Holiness", text: "We are called to scriptural holiness, a life transformed by love of God and neighbour." },
-  { title: "Sacraments", text: "Baptism and the Lord's Supper are sacred means of grace ordained by Christ." },
-  { title: "Community", text: "The church is the body of Christ, called to worship, nurture, service, and witness together." },
+  {
+    title: "Scripture",
+    text: "The Holy Bible is the inspired Word of God, the ultimate rule for faith and practice.",
+  },
+  {
+    title: "Grace",
+    text: "We believe in prevenient, justifying, and sanctifying grace, which is God's unmerited love reaching every soul.",
+  },
+  {
+    title: "Holiness",
+    text: "We are called to scriptural holiness, a life transformed by love of God and neighbour.",
+  },
+  {
+    title: "Sacraments",
+    text: "Baptism and the Lord's Supper are sacred means of grace ordained by Christ.",
+  },
+  {
+    title: "Community",
+    text: "The church is the body of Christ, called to worship, nurture, service, and witness together.",
+  },
   { title: "Mission", text: CHURCH_MISSION },
 ];
 
 export default function AboutPage() {
   return (
     <div>
-      {/* Hero */}
       <section
-        className="py-24 md:py-32 text-white relative overflow-hidden"
+        className="relative overflow-hidden py-24 text-white md:py-32"
         style={{
-          background: "linear-gradient(135deg, var(--church-navy-dark) 0%, var(--church-navy) 50%, var(--church-red) 100%)",
+          background:
+            "linear-gradient(135deg, var(--church-navy-dark) 0%, var(--church-navy) 65%, var(--church-red-dark) 100%)",
         }}
       >
-        <div className="absolute inset-0 opacity-10">
-          {[...Array(6)].map((_, i) => (
-            <div
-              key={i}
-              className="absolute text-white"
-              style={{ top: `${15 + i * 15}%`, left: `${i * 18}%`, opacity: 0.08 }}
-            ><Cross size={96} strokeWidth={1.2} /></div>
-          ))}
-        </div>
-
-        <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
-          <div className="w-24 h-24 rounded-full overflow-hidden mx-auto mb-8 shadow-2xl"
-            style={{ border: "3px solid rgba(255,255,255,0.3)" }}>
-            <img src={mcnLogo} alt="MCN Logo" className="w-full h-full object-cover" />
+        <div className="relative z-10 mx-auto max-w-4xl px-6 text-center">
+          <div className="mx-auto mb-8 h-24 w-24 overflow-hidden rounded-full border-[3px] border-white/30 shadow-2xl">
+            <img
+              src={mcnLogo}
+              alt="Methodist Church Nigeria emblem"
+              className="h-full w-full object-contain"
+            />
           </div>
-          <div
-            className="text-xs uppercase tracking-[0.3em] font-semibold mb-3"
-            style={{ color: "var(--church-gold-light)" }}
-          >
-            Our Heritage & Story
-          </div>
-          <h1
-            className="text-4xl md:text-6xl font-bold mb-5"
-            style={{ fontFamily: "Playfair Display, serif" }}
-          >
-            About Us
-          </h1>
-          <p className="text-white/75 text-lg leading-relaxed max-w-2xl mx-auto">
-            Discover the rich heritage, enduring faith, and transforming mission of the Methodist Cathedral of Favour.
+          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.25em] text-amber-200">
+            Our church in Calabar
           </p>
+          <h1 className="mb-5 text-4xl font-semibold md:text-6xl">
+            Our story at Atamunu
+          </h1>
+          <p className="mx-auto max-w-2xl text-lg leading-8 text-white/80">
+            {CHURCH_NAME}: a Methodist church family at 79 Atamunu Street,
+            Calabar, Cross River State.
+          </p>
+          <p className="mt-5 text-sm font-semibold text-amber-200">{TAGLINE}</p>
         </div>
-
-        <div className="absolute bottom-0 left-0 right-0">
-          <svg viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full">
+        <div className="absolute inset-x-0 bottom-0">
+          <svg
+            viewBox="0 0 1440 60"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            className="w-full"
+            aria-hidden="true"
+          >
             <path d="M0 60L720 0L1440 60H0Z" fill="var(--church-cream)" />
           </svg>
         </div>
       </section>
 
-      {/* History Section */}
-      <section className="py-20 md:py-28" style={{ background: "var(--church-cream)" }}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+      <section className="py-16 md:py-24" aria-labelledby="local-history-title">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid items-start gap-12 lg:grid-cols-2 lg:gap-16">
             <div>
-              <div
-                className="text-xs uppercase tracking-[0.3em] font-semibold mb-3"
-                style={{ color: "var(--church-red)" }}
-              >
-                Since {methodistHistory.founding}
-              </div>
+              <p className="mb-3 text-xs font-bold uppercase tracking-[0.2em] text-church-red">
+                Rooted in this community
+              </p>
               <h2
-                className="text-3xl md:text-4xl font-bold mb-6 section-title"
-                style={{ color: "var(--church-navy)" }}
+                id="local-history-title"
+                className="section-title mb-7 text-3xl font-semibold md:text-4xl"
               >
-                Our History
+                The congregation behind the cathedral
               </h2>
-              {methodistHistory.description.split("\n\n").map((para, i) => (
-                <p key={i} className="text-gray-600 leading-relaxed mb-4 text-sm">
-                  {para}
+              <div className="space-y-5 text-sm leading-8 text-slate-600">
+                <p>
+                  Our home is 79 Atamunu Street in Calabar. Here, our
+                  congregation gathers for worship, prayer, Holy Communion,
+                  fellowship, and the teaching of God's Word as part of
+                  Methodist Church Nigeria.
                 </p>
-              ))}
-            </div>
-
-            {/* Timeline */}
-            <div className="relative pl-6">
-              <div
-                className="absolute left-0 top-0 bottom-0 w-0.5"
-                style={{ background: "var(--church-red)" }}
-              />
-              <div className="space-y-6">
-                {milestones.map((m, i) => (
-                  <div key={i} className="relative pl-8">
-                    <div
-                      className="absolute left-0 w-5 h-5 rounded-full -translate-x-2.5 flex items-center justify-center"
-                      style={{ background: "var(--church-red)", top: "2px" }}
-                    >
-                      <div className="w-2 h-2 rounded-full bg-white" />
-                    </div>
-                    <div
-                      className="text-xs font-bold uppercase tracking-wider mb-1"
-                      style={{ color: "var(--church-red)" }}
-                    >
-                      {m.year}
-                    </div>
-                    <p className="text-sm text-gray-700">{m.event}</p>
-                  </div>
-                ))}
+                <p>
+                  The local congregation's story predates the creation of
+                  Atamunu Diocese. In his remembrance of Archbishop Efiom E.
+                  Ekpenyong, Methodist minister Deji Okegbile recalls the
+                  archbishop's ministry at AGLOW 2015 at Methodist Church
+                  Nigeria, 79 Atamunu Street. His account records a worshipping
+                  church at this address years before the diocesan inauguration.{" "}
+                  <a
+                    href={localHistorySources.aglow.url}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="font-semibold text-church-navy underline underline-offset-4"
+                  >
+                    Read the recollection
+                  </a>
+                  .
+                </p>
+                <p>
+                  A later chapter began in August 2022 with the creation of
+                  Atamunu Diocese from Calabar Diocese. Its inauguration on 7
+                  May 2023 brought the congregation into a new diocesan chapter
+                  at the Cathedral of Favour. Those events belong to the history
+                  of the diocese; they do not establish the founding date of the
+                  local church.{" "}
+                  <a
+                    href={localHistorySources.diocese.url}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="font-semibold text-church-navy underline underline-offset-4"
+                  >
+                    Read the inauguration account
+                  </a>
+                  .
+                </p>
+                <p>
+                  Our life together continues through worship, discipleship, the
+                  ministries of children and young people, fellowship, and
+                  service. Our mission is to win souls for Christ, nurture
+                  spiritually fulfilled members, and remain active in serving
+                  humanity.
+                </p>
               </div>
+              <aside
+                className="mt-7 rounded-2xl border border-[#e6e1d6] bg-white p-5 text-xs leading-7 text-slate-500"
+                aria-label="Historical record note"
+              >
+                <strong className="block text-sm font-semibold text-church-navy">
+                  Our earliest years
+                </strong>
+                The public sources cited here do not establish the
+                congregation's original founding date or name its first members.
+                Those details require confirmation from local church records.
+                The timeline records documented events, rather than a founding
+                year.
+              </aside>
+              <a
+                href={contactInfo.maps}
+                target="_blank"
+                rel="noreferrer"
+                className="mt-7 inline-flex items-center gap-2 text-sm font-semibold text-church-navy"
+              >
+                <MapPin size={18} />
+                Find us at 79 Atamunu Street
+              </a>
+            </div>
+            <div className="community-panel">
+              <h3 className="mb-7 text-2xl font-semibold text-church-navy-dark">
+                Chapters in our local story
+              </h3>
+              <ol className="space-y-7 border-l border-[#d6dcec] pl-6">
+                {localChurchMilestones.map((milestone) => (
+                  <li key={milestone.date} className="relative">
+                    <span className="absolute -left-[29px] top-1 h-2.5 w-2.5 rounded-full bg-church-red ring-4 ring-white" />
+                    <p className="text-xs font-bold uppercase tracking-wider text-church-red">
+                      {milestone.date}
+                    </p>
+                    <h4 className="mb-2 mt-2 text-lg font-semibold text-church-navy-dark">
+                      {milestone.title}
+                    </h4>
+                    <p className="text-sm leading-7 text-slate-600">
+                      {milestone.description}
+                    </p>
+                    <a
+                      href={localHistorySources[milestone.source].url}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="mt-2 inline-block text-xs font-semibold text-church-navy underline underline-offset-4"
+                      aria-label={`Source for ${milestone.title}`}
+                    >
+                      Source
+                    </a>
+                  </li>
+                ))}
+              </ol>
+              <details className="mt-8 border-t border-slate-100 pt-5 text-xs leading-6 text-slate-500">
+                <summary className="cursor-pointer font-semibold text-church-navy">
+                  History sources
+                </summary>
+                <ul className="mt-3 space-y-3">
+                  {Object.entries(localHistorySources).map(([key, source]) => (
+                    <li key={key}>
+                      <a
+                        href={source.url}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="underline underline-offset-4"
+                      >
+                        {source.label}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </details>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Founders */}
-      <section className="py-20 md:py-24" style={{ background: "white" }}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-14">
-            <div
-              className="text-xs uppercase tracking-[0.3em] font-semibold mb-3"
-              style={{ color: "var(--church-red)" }}
-            >
-              Standing on Their Shoulders
-            </div>
-            <h2
-              className="text-3xl md:text-4xl font-bold section-title centered"
-              style={{ color: "var(--church-navy)" }}
-            >
-              Our Founders
-            </h2>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {founders.map((f, i) => (
-              <div
-                key={i}
-                className="rounded-2xl overflow-hidden card-hover"
-                style={{ boxShadow: "0 4px 20px rgba(0,0,0,0.07)" }}
+      <section
+        className="bg-white py-16 md:py-24"
+        aria-labelledby="local-church-life"
+      >
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <p className="mb-3 text-xs font-bold uppercase tracking-[0.2em] text-church-red">
+            Faith lived together
+          </p>
+          <h2
+            id="local-church-life"
+            className="section-title mb-10 text-3xl font-semibold md:text-4xl"
+          >
+            Life at the Cathedral of Favour
+          </h2>
+          <div className="grid gap-6 md:grid-cols-3">
+            {churchLife.map(({ title, text, Icon }) => (
+              <article
+                key={title}
+                className="rounded-2xl border border-slate-100 p-7"
               >
-                {/* Founder portrait */}
-                <div
-                  className="flex aspect-[4/5] items-center justify-center overflow-hidden"
-                  style={{
-                    background: `linear-gradient(135deg, ${f.color} 0%, ${f.color}99 100%)`,
-                  }}
-                >
-                  {f.image ? (
-                    <img src={f.image} alt={`${f.name} portrait`} className="h-full w-full object-cover object-top" loading="lazy" />
-                  ) : (
-                    <div className="text-center text-white/90">
-                      <UserRound className="mx-auto mb-3" size={52} strokeWidth={1.4} />
-                      <div className="text-lg font-bold" style={{ fontFamily: "Playfair Display, serif" }}>
-                        {f.name.split(" ").slice(-1)[0]}
-                      </div>
-                    </div>
-                  )}
-                </div>
-
-                <div className="p-6">
-                  <div
-                    className="text-xs font-semibold uppercase tracking-wider mb-1"
-                    style={{ color: f.color }}
-                  >
-                    {f.period}
-                  </div>
-                  <h3
-                    className="text-lg font-bold mb-1"
-                    style={{ fontFamily: "Playfair Display, serif", color: "var(--church-navy)" }}
-                  >
-                    {f.name}
-                  </h3>
-                  <div className="text-xs font-semibold text-gray-400 mb-3">{f.role}</div>
-                  <p className="text-sm text-gray-600 leading-relaxed">{f.description}</p>
-                </div>
-              </div>
+                <span className="community-icon">
+                  <Icon size={24} strokeWidth={1.5} />
+                </span>
+                <h3 className="mb-3 mt-5 text-2xl font-semibold text-church-navy-dark">
+                  {title}
+                </h3>
+                <p className="text-sm leading-7 text-slate-600">{text}</p>
+              </article>
             ))}
           </div>
         </div>
       </section>
 
-      {/* What We Believe */}
-      <section
-        className="py-20 md:py-24"
-        style={{ background: "var(--church-cream)" }}
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-14">
-            <div
-              className="text-xs uppercase tracking-[0.3em] font-semibold mb-3"
-              style={{ color: "var(--church-red)" }}
-            >
-              Our Doctrinal Foundation
-            </div>
+      <section className="py-16 md:py-24" aria-labelledby="church-beliefs">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mb-12 text-center">
+            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-church-red">
+              The faith we share
+            </p>
             <h2
-              className="text-3xl md:text-4xl font-bold section-title centered"
-              style={{ color: "var(--church-navy)" }}
+              id="church-beliefs"
+              className="section-title centered text-3xl font-semibold md:text-4xl"
             >
-              What We Believe
+              What we believe
             </h2>
           </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {beliefs.map((b, i) => (
-              <div
-                key={i}
-                className="bg-white rounded-2xl p-7 card-hover"
-                style={{ boxShadow: "0 4px 16px rgba(0,0,0,0.05)" }}
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {beliefs.map((belief) => (
+              <article
+                key={belief.title}
+                className="card-hover rounded-2xl bg-white p-7 shadow-sm"
               >
-                <div
-                  className="w-12 h-12 rounded-xl flex items-center justify-center text-xl mb-4"
-                  style={{ background: "rgba(200,16,46,0.1)" }}
-                >
-                  <Cross size={22} style={{ color: "var(--church-red)" }} />
-                </div>
-                <h4
-                  className="text-lg font-bold mb-2"
-                  style={{ fontFamily: "Playfair Display, serif", color: "var(--church-navy)" }}
-                >
-                  {b.title}
-                </h4>
-                <p className="text-sm text-gray-600 leading-relaxed">{b.text}</p>
-              </div>
+                <span className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-red-50 text-church-red">
+                  <Cross size={22} />
+                </span>
+                <h3 className="mb-2 text-lg font-semibold text-church-navy">
+                  {belief.title}
+                </h3>
+                <p className="text-sm leading-7 text-slate-600">
+                  {belief.text}
+                </p>
+              </article>
             ))}
           </div>
         </div>

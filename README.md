@@ -38,6 +38,24 @@ The website includes a private content dashboard at `/admin`. Approved administr
 
 The public calendar sorts future events automatically and stops showing completed events. When a leader is transferred, unpublish or delete the old profile and add the incoming leader with the correct display order.
 
+## Church online: live worship, prayer, and members
+
+The refresh adds `/live`, `/prayer`, and `/members`, with links in the navigation, homepage, and footer. Headings use Source Serif 4 and body text uses Manrope, with local font fallbacks. Leadership and ministry photos retain their full aspect ratio without cropping or download overlays.
+
+- **Live worship:** administrators use **Admin → Church online → Live stream** to add an official HTTPS YouTube/Facebook link, description, and an offline, scheduled, or live status. Video URLs embed; channel/page URLs open externally. No broadcast or live status is invented. Set status manually at the start and end of a broadcast. Dates are entered and displayed in West Africa Time. The public page refreshes settings every minute.
+- **Members:** email magic-link sign-in creates a normal member account. Members can save an optional name, phone, and ministry, read their own latest 100 prayer requests, and open services/events. Member accounts never become administrators automatically. Member profiles are visible only to their owner; there is no public member directory.
+- **Prayer:** signed-in members consent to share requests with approved administrators. Requests are private to their owner and administrators. **Admin → Church online → Prayer inbox** filters the latest 100 requests and marks them received, in prayer, or prayed for. Visitors can also open an email to the existing church address. The site confirms submission only after the database accepts it.
+
+### Activate the new features
+
+1. Review and apply `supabase/migrations/20261124080810_add_church_online_portal.sql` to the linked project using your normal migration deployment. This creates `member_profiles`, `prayer_requests`, and `live_stream_settings`, including API grants, length constraints, column permissions, and ownership/admin RLS. It starts with an empty broadcast link and offline status. This local update does not apply hosted migrations or publish the site automatically.
+2. In hosted **Authentication → URL Configuration**, set the production Site URL and allow the exact production `/members` and `/prayer` redirect URLs, plus local development URLs if needed. The repository's local Supabase configuration uses port 5173.
+3. Enable email authentication and new user signups. Configure a production SMTP sender and verify magic-link delivery; default Supabase email quotas are unsuitable for a congregation. Keep your chosen Auth rate limits and CAPTCHA settings. Never expose secret or service-role keys in the frontend.
+4. Keep `public.admins` restricted to approved church administrators. An ordinary member must not be inserted into that table just to use the portal.
+5. Add the official streaming link in Admin when it is supplied. Until then, the public live page remains between broadcasts.
+
+`npm test` includes embedded Postgres tests for the actual new migration: anonymous access, cross-member isolation, impersonation attempts, forged status/timestamp inserts, administrator permissions, and broadcast constraints. These do not access the hosted project or send sign-in emails. Finish deployment verification with two separate member accounts, an administrator, a real email sign-in, and the supplied broadcast link.
+
 ### Connect Supabase
 
 1. Create a Supabase project.
@@ -152,10 +170,15 @@ Colors are defined as CSS variables in `src/index.css` and as Tailwind config in
 | Page       | Route (state) | Description                         |
 |------------|---------------|-------------------------------------|
 | Home       | `home`        | Full homepage with all sections     |
-| About      | `about`       | History, founders, beliefs          |
+| About      | `about`       | Atamunu congregation, documented local milestones, church life, beliefs |
 | Leadership | `leadership`  | Bishop + leadership team            |
 | Gallery    | `gallery`     | Filterable photo gallery            |
 | Giving     | `giving`      | Bank accounts + giving message      |
+| Watch live | `live`        | Broadcast player, upcoming stream, service times |
+| Prayer     | `prayer`      | Private prayer submissions and email contact |
+| Members    | `members`     | Email sign-in, profile, prayer history, worship/event links |
+
+The About page uses `src/data/localChurchHistory.ts` for its cited local milestones. It distinguishes documented events at 79 Atamunu from the 2022 creation and 2023 inauguration of Atamunu Diocese. No founding date or founding members are asserted for the congregation without parish records. The former national-history timeline and national founders section have been removed from this page.
 
 ---
 
@@ -165,4 +188,4 @@ Colors are defined as CSS variables in `src/index.css` and as Tailwind config in
 - **Vite 8** (build tool)
 - **Tailwind CSS 3.4**
 - **Radix UI / shadcn-ui** components
-- Google Fonts: Playfair Display + Nunito Sans
+- Google Fonts: Source Serif 4 + Manrope

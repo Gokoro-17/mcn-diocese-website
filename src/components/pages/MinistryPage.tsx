@@ -72,7 +72,7 @@ export default function MinistryPage({ ministry, onBack, onOpenMinistry }: Minis
             </div>
             <div>
               <div className="mb-3 text-xs font-bold uppercase tracking-[0.25em] text-white/65">{ministry.ageGroup}</div>
-              <h1 className="text-4xl font-bold leading-tight md:text-6xl" style={{ fontFamily: "Playfair Display, serif" }}>{ministry.name}</h1>
+              <h1 className="text-4xl font-bold leading-tight md:text-6xl" style={{ fontFamily: "var(--font-heading)" }}>{ministry.name}</h1>
               <p className="mt-4 text-lg font-semibold italic text-white/80 md:text-xl">“{ministry.tagline}”</p>
             </div>
           </div>
@@ -83,7 +83,7 @@ export default function MinistryPage({ ministry, onBack, onOpenMinistry }: Minis
         <div className="space-y-8">
           <article className="rounded-3xl bg-white p-7 shadow-sm md:p-10">
             <div className="mb-3 text-xs font-bold uppercase tracking-[0.24em]" style={{ color: ministry.color }}>About the Ministry</div>
-            <h2 className="text-2xl font-bold md:text-3xl" style={{ color: "var(--church-navy)", fontFamily: "Playfair Display, serif" }}>Faith, fellowship and service</h2>
+            <h2 className="text-2xl font-bold md:text-3xl" style={{ color: "var(--church-navy)", fontFamily: "var(--font-heading)" }}>Faith, fellowship and service</h2>
             <p className="mt-6 text-base leading-8 text-gray-600">{ministry.description}</p>
 
             {ministry.subGroups && ministry.subGroups.length > 0 && (
@@ -98,9 +98,9 @@ export default function MinistryPage({ ministry, onBack, onOpenMinistry }: Minis
 
           <article className="rounded-3xl bg-white p-7 shadow-sm md:p-10">
             <div className="mb-3 text-xs font-bold uppercase tracking-[0.24em]" style={{ color: ministry.color }}>Ministry Gallery</div>
-            <h2 className="text-2xl font-bold md:text-3xl" style={{ color: "var(--church-navy)", fontFamily: "Playfair Display, serif" }}>Life in our fellowship</h2>
+            <h2 className="text-2xl font-bold md:text-3xl" style={{ color: "var(--church-navy)", fontFamily: "var(--font-heading)" }}>Life in our fellowship</h2>
             {photos.length > 0 ? (
-              <div className="mt-7 grid gap-4 sm:grid-cols-2">
+              <div className="mt-7 grid items-start gap-4 sm:grid-cols-2">
                 {photos.map((photo, index) => (
                   <button
                     key={photo.id}
@@ -113,7 +113,7 @@ export default function MinistryPage({ ministry, onBack, onOpenMinistry }: Minis
                     <img
                       src={photo.imageUrl}
                       alt={photo.title || `${ministry.name} activity ${index + 1}`}
-                      className="h-64 w-full object-cover transition duration-500 group-hover:scale-105"
+                      className="block h-auto w-full object-contain"
                       loading="lazy"
                     />
                     <span className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent px-4 pb-4 pt-12 text-left text-sm font-bold text-white opacity-0 transition group-hover:opacity-100 group-focus-visible:opacity-100">
@@ -137,10 +137,10 @@ export default function MinistryPage({ ministry, onBack, onOpenMinistry }: Minis
             <div className="mb-5 text-xs font-bold uppercase tracking-[0.2em]" style={{ color: ministry.color }}>Ministry {leaderTitle}</div>
             {president ? (
               <>
-                <div className="flex h-52 items-center justify-center overflow-hidden rounded-2xl bg-gray-100">
-                  {president.photo ? <img src={president.photo} alt={president.name} className="h-full w-full object-cover" loading="lazy" /> : <UserRound size={62} className="text-gray-300" />}
+                <div className={`overflow-hidden rounded-2xl bg-gray-100 ${president.photo ? "" : "flex h-52 items-center justify-center"}`}>
+                  {president.photo ? <img src={president.photo} alt={president.name} className="block h-auto w-full object-contain" loading="lazy" /> : <UserRound size={62} className="text-gray-300" />}
                 </div>
-                <h2 className="mt-5 text-xl font-bold" style={{ color: "var(--church-navy)", fontFamily: "Playfair Display, serif" }}>{president.name}</h2>
+                <h2 className="mt-5 text-xl font-bold" style={{ color: "var(--church-navy)", fontFamily: "var(--font-heading)" }}>{president.name}</h2>
                 <p className="mt-1 text-sm text-gray-500">{leaderTitle}, {ministry.name}</p>
                 <div className="mt-6 space-y-3">
                   {president.phone && <a href={`tel:${president.phone.replace(/[^+\d]/g, "")}`} className="flex items-center justify-center gap-2 rounded-xl border px-4 py-3 text-sm font-bold transition hover:bg-gray-50" style={{ borderColor: `${ministry.color}40`, color: ministry.color }}><Phone size={17} /> Call {leaderTitle.toLowerCase()}</a>}
@@ -160,7 +160,7 @@ export default function MinistryPage({ ministry, onBack, onOpenMinistry }: Minis
 
       <section className="bg-white px-4 py-16 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">
-          <h2 className="text-2xl font-bold md:text-3xl" style={{ color: "var(--church-navy)", fontFamily: "Playfair Display, serif" }}>Explore other ministries</h2>
+          <h2 className="text-2xl font-bold md:text-3xl" style={{ color: "var(--church-navy)", fontFamily: "var(--font-heading)" }}>Explore other ministries</h2>
           <div className="mt-7 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {relatedMinistries.map((item) => (
               <button key={item.id} type="button" onClick={() => onOpenMinistry(item.slug)} className="group flex items-center gap-4 rounded-2xl border border-gray-100 p-5 text-left shadow-sm transition hover:-translate-y-1 hover:shadow-lg">

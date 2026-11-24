@@ -149,7 +149,7 @@ export default function Hero({ onNavigate }: HeroProps) {
           </div>
           <h1
             className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-4 leading-tight"
-            style={{ fontFamily: "Playfair Display, serif", textShadow: "0 2px 20px rgba(0,0,0,0.4)" }}
+            style={{ fontFamily: "var(--font-heading)", textShadow: "0 2px 20px rgba(0,0,0,0.4)" }}
           >
             {slide.title}
           </h1>
@@ -195,7 +195,7 @@ export default function Hero({ onNavigate }: HeroProps) {
               <div key={item.label} className="countdown-box">
                   <div
                     className="text-2xl font-bold tabular-nums text-white md:text-3xl"
-                    style={{ fontFamily: "Playfair Display, serif" }}
+                    style={{ fontFamily: "var(--font-heading)" }}
                   >
                     {item.value}
                   </div>

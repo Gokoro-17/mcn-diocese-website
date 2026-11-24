@@ -71,7 +71,7 @@ export default function MinistriesSection({ onOpenMinistry }: MinistriesSectionP
                 <div>
                   <h3
                     className="text-2xl md:text-3xl font-bold"
-                    style={{ fontFamily: "Playfair Display, serif", color: "var(--church-navy)" }}
+                    style={{ fontFamily: "var(--font-heading)", color: "var(--church-navy)" }}
                   >
                     {ministry.name}
                   </h3>
@@ -87,7 +87,7 @@ export default function MinistriesSection({ onOpenMinistry }: MinistriesSectionP
               {/* Tagline */}
               <div
                 className="text-lg font-semibold italic mb-5"
-                style={{ fontFamily: "Playfair Display, serif", color: ministry.color }}
+                style={{ fontFamily: "var(--font-heading)", color: ministry.color }}
               >
                 "{ministry.tagline}"
               </div>

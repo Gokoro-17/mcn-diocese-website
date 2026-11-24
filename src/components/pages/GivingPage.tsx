@@ -54,7 +54,7 @@ export default function GivingPage() {
           </div>
           <h1
             className="text-4xl md:text-6xl font-bold mb-5"
-            style={{ fontFamily: "Playfair Display, serif" }}
+            style={{ fontFamily: "var(--font-heading)" }}
           >
             Give & Support
           </h1>
@@ -135,7 +135,7 @@ export default function GivingPage() {
             >
               <div
                 className="absolute top-0 left-2 text-white/5 select-none pointer-events-none"
-                style={{ fontSize: "200px", lineHeight: 1, fontFamily: "Playfair Display, serif" }}
+                style={{ fontSize: "200px", lineHeight: 1, fontFamily: "var(--font-heading)" }}
               >
                 "
               </div>
@@ -150,7 +150,7 @@ export default function GivingPage() {
 
                 <p
                   className="text-lg md:text-xl italic font-medium leading-relaxed mb-6"
-                  style={{ fontFamily: "Playfair Display, serif" }}
+                  style={{ fontFamily: "var(--font-heading)" }}
                 >
                   "{givingVerses[verseIdx].verse}"
                 </p>
@@ -226,7 +226,7 @@ export default function GivingPage() {
 
                   <h3
                     className="text-base font-bold mb-4"
-                    style={{ fontFamily: "Playfair Display, serif", color: "var(--church-navy)" }}
+                    style={{ fontFamily: "var(--font-heading)", color: "var(--church-navy)" }}
                   >
                     {account.bankName}
                   </h3>
@@ -246,7 +246,7 @@ export default function GivingPage() {
                     <div className="text-xs text-gray-500 mb-1.5 font-medium">Account Number</div>
                     <div
                       className="text-xl font-bold tracking-wider"
-                      style={{ fontFamily: "Playfair Display, serif", color: account.color }}
+                      style={{ fontFamily: "var(--font-heading)", color: account.color }}
                     >
                       {account.accountNumber}
                     </div>

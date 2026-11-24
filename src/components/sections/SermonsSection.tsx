@@ -85,7 +85,7 @@ function SermonCard({ sermon, index }: SermonCardProps) {
 
       <div className="p-5">
         <div className="mb-3 flex items-center gap-2"><div className="h-1.5 w-1.5 rounded-full" style={{ background: color }} /><span className="text-xs font-medium text-gray-400">{sermon.date}</span></div>
-        <h3 className="mb-1.5 line-clamp-2 text-base font-bold leading-tight" style={{ fontFamily: "Playfair Display, serif", color: "var(--church-navy)" }}>{sermon.title}</h3>
+        <h3 className="mb-1.5 line-clamp-2 text-base font-bold leading-tight" style={{ fontFamily: "var(--font-heading)", color: "var(--church-navy)" }}>{sermon.title}</h3>
         <div className="mb-2 text-xs font-semibold" style={{ color }}>{sermon.preacher}</div>
         <p className="mb-4 line-clamp-2 text-xs leading-relaxed text-gray-500">{sermon.description}</p>
 
@@ -118,7 +118,7 @@ export default function SermonsSection() {
   }, []);
 
   return (
-    <section className="py-20 md:py-28" style={{ background: "linear-gradient(180deg, white 0%, var(--church-cream) 100%)" }}>
+    <section id="sermons" className="scroll-mt-36 py-20 md:py-28" style={{ background: "linear-gradient(180deg, white 0%, var(--church-cream) 100%)" }}>
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mb-14 flex flex-col justify-between gap-4 md:flex-row md:items-end">
           <div><div className="mb-3 text-xs font-semibold uppercase tracking-[0.3em]" style={{ color: "var(--church-red)" }}>Words of Life</div><h2 className="section-title text-3xl font-bold md:text-5xl" style={{ color: "var(--church-navy)" }}>Latest Sermons</h2></div>
