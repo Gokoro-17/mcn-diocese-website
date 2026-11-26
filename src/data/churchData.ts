@@ -11,8 +11,8 @@ export const CHURCH_NAME = "The Methodist Cathedral of Favour";
 export const DENOMINATION_NAME = "Methodist Church Nigeria";
 export const TAGLINE = "Worthy is the Lamb";
 export const MOTTO = "Spreading Scriptural Holiness Over the Land";
-export const CHURCH_MISSION = "TO CONSISTENTLY WIN MORE SOULS FOR CHRIST, DEVELOP SPIRITUALLY FULFILLED MEMBERS AND REMAIN VERY ACTIVE IN SERVING HUMANITY.";
-export const CHURCH_VISION = "TO BE ONE OF THE LARGEST AND SPIRITUALLY VIBRANT CHURCHES IN NIGERIA.";
+export const CHURCH_MISSION = "To consistently win more souls for Christ, develop spiritually fulfilled members and remain very active in serving humanity.";
+export const CHURCH_VISION = "To be one of the largest and spiritually vibrant churches in Nigeria.";
 
 export const contactInfo = {
   email: "atamunudiocese@gmail.com",

@@ -1,0 +1,3 @@
+# Preserve the supplied hymn source and bundled third-party license verbatim.
+public/hymns/efik-hymn-book.txt -text -whitespace
+public/pdfjs/standard_fonts/LICENSE_LIBERATION -text -whitespace

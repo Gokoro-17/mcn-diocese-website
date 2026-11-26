@@ -32,7 +32,7 @@ export default function PrayerPage({
             <PrayerForm key={user.id} userId={user.id} />
           ) : (
             <>
-              <p className="mb-5 text-sm leading-7 text-slate-600">
+              <p className="mb-5 text-base leading-7 text-slate-600">
                 Sign in to send a private prayer request and follow it in your
                 members portal.
               </p>
@@ -40,7 +40,7 @@ export default function PrayerPage({
             </>
           )}
           {error && (
-            <p className="mt-4 text-sm text-red-700" role="alert">
+            <p className="mt-4 text-base text-red-700" role="alert">
               {error}
             </p>
           )}
@@ -54,7 +54,7 @@ export default function PrayerPage({
           <h2 className="text-2xl font-semibold text-church-navy-dark">
             Shared with care.
           </h2>
-          <p className="text-sm leading-7 text-slate-600">
+          <p className="text-base leading-7 text-slate-600">
             Requests submitted here are private to you and approved church
             administrators. Share only the details you feel comfortable
             providing.
@@ -64,12 +64,12 @@ export default function PrayerPage({
             <h3 className="text-lg font-semibold text-church-navy-dark">
               Your prayer journey
             </h3>
-            <p className="mt-2 text-sm leading-7 text-slate-600">
+            <p className="mt-2 text-base leading-7 text-slate-600">
               See your previous requests and updates from the church in one
               place.
             </p>
             <button
-              className="mt-3 text-sm font-bold text-church-navy underline underline-offset-4"
+              className="mt-3 text-base font-bold text-church-navy underline underline-offset-4"
               onClick={() => onNavigate("members")}
             >
               Open members portal
@@ -77,7 +77,7 @@ export default function PrayerPage({
           </div>
           <a
             href={`mailto:${contactInfo.email}?subject=Prayer%20request`}
-            className="inline-flex items-center gap-2 text-sm font-semibold text-church-navy"
+            className="inline-flex items-center gap-2 text-base font-semibold text-church-navy"
           >
             <Mail size={17} />
             Prefer email? Contact the church

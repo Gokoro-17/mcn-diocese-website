@@ -78,7 +78,7 @@ export default function LivePage({
         >
           <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 px-6 py-5">
             <span
-              className={`inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.14em] ${isLive ? "text-red-700" : "text-slate-500"}`}
+              className={`inline-flex items-center gap-2 text-sm font-bold uppercase tracking-[0.14em] ${isLive ? "text-red-700" : "text-slate-500"}`}
             >
               <span
                 className={`h-2 w-2 rounded-full ${isLive ? "animate-pulse bg-red-600" : "bg-slate-400"}`}
@@ -94,7 +94,7 @@ export default function LivePage({
             <button
               type="button"
               onClick={() => setRefresh((value) => value + 1)}
-              className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-500 hover:text-church-navy"
+              className="inline-flex items-center gap-1.5 text-sm font-semibold text-slate-500 hover:text-church-navy"
             >
               <RefreshCw size={13} />
               Refresh
@@ -128,7 +128,7 @@ export default function LivePage({
                     ? "We'll worship together soon."
                     : "See you at the next service."}
               </h2>
-              <p className="mt-4 max-w-md text-sm leading-7 text-white/65">
+              <p className="mt-4 max-w-md text-base leading-7 text-white/65">
                 {isLive
                   ? `Use the ${source?.provider} link below to join the broadcast.`
                   : isScheduled && scheduledAt
@@ -142,7 +142,7 @@ export default function LivePage({
               {stream?.title || "Worship with us"}
             </h2>
             {stream?.description && (
-              <p className="whitespace-pre-wrap text-sm leading-7 text-slate-600">
+              <p className="whitespace-pre-wrap text-base leading-7 text-slate-600">
                 {stream.description}
               </p>
             )}
@@ -158,11 +158,11 @@ export default function LivePage({
               </a>
             )}
             {error && (
-              <p role="alert" className="text-sm text-red-700">
+              <p role="alert" className="text-base text-red-700">
                 {error}
               </p>
             )}
-            <p className="text-xs leading-6 text-slate-500">
+            <p className="text-sm leading-6 text-slate-500">
               If a broadcast is unavailable here, try its original platform.
               Broadcast times are confirmed by the church.
             </p>
@@ -176,14 +176,14 @@ export default function LivePage({
             <h2 className="mt-5 text-2xl font-semibold text-church-navy-dark">
               Join us on Sunday
             </h2>
-            <p className="mt-2 text-xs text-slate-500">
+            <p className="mt-2 text-sm text-slate-500">
               Service times · West Africa Time
             </p>
             <ul className="mt-5 divide-y divide-slate-100">
               {serviceTimes.map((service) => (
                 <li
                   key={service.name}
-                  className="flex justify-between gap-3 py-3 text-sm"
+                  className="flex justify-between gap-3 py-3 text-base"
                 >
                   <span className="text-slate-600">{service.name}</span>
                   <strong className="whitespace-nowrap text-church-navy-dark">
@@ -197,19 +197,19 @@ export default function LivePage({
             <h2 className="text-2xl font-semibold text-church-navy-dark">
               Let us pray with you.
             </h2>
-            <p className="mt-3 text-sm leading-7 text-slate-600">
+            <p className="mt-3 text-base leading-7 text-slate-600">
               There is room for what is on your heart.
             </p>
             <button
               onClick={() => onNavigate("prayer")}
-              className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-church-navy"
+              className="mt-5 inline-flex items-center gap-2 text-base font-bold text-church-navy"
             >
               Request prayer
               <ArrowRight size={16} />
             </button>
           </div>
           <a
-            className="inline-flex items-center gap-2 px-2 text-sm font-semibold text-church-navy"
+            className="inline-flex items-center gap-2 px-2 text-base font-semibold text-church-navy"
             href="/#sermons"
           >
             Explore recent sermons

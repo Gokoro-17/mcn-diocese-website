@@ -40,7 +40,21 @@ The public calendar sorts future events automatically and stops showing complete
 
 ## Church online: live worship, prayer, and members
 
-The refresh adds `/live`, `/prayer`, and `/members`, with links in the navigation, homepage, and footer. Headings use Source Serif 4 and body text uses Manrope, with local font fallbacks. Leadership and ministry photos retain their full aspect ratio without cropping or download overlays.
+The refresh adds `/live`, `/prayer`, `/members`, and `/hymns`. The church's original navy, gold, red, and warm cream palette is retained, with Source Serif 4 headings and Manrope body text. The dark header, centered welcome, red/outline hero buttons, dark page headers, and navy footer match the former design. The crest appears in the main header, with no repeated hero logo or secondary navigation bar. Live worship, prayer, and members remain available through the menu and footer. Wider gutters, larger reading text, fewer cards per row, one ministry directory, and a single Sunday schedule keep pages less crowded. Weekday gatherings use a disclosure. Daily Bible Verse remains. Leadership and ministry photos retain their full aspect ratio without cropping or download overlays.
+
+The hero's compact four-unit countdown targets the next Sunday 7:00 AM service in West Africa Time, independent of a visitor's timezone. It rolls forward automatically after service time and updates when the page returns to the foreground. Tests cover the service boundary, WAT midnight, and the new year. Navigation/actions use familiar Lucide icons and Font Awesome's praying hands and official social/app-store marks; all actions retain text or accessible labels.
+
+### English and Efik hymnbooks
+
+`/hymns` uses the two church-supplied files in `public/hymns/`. No external account, borrowed scan, or app installation is needed to read them:
+
+- English: the unchanged 379-page `methodist-984-hymns.pdf`, rendered on demand using a locally bundled PDF.js worker. Users can search labelled hymn numbers/opening lines, select PDF pages, zoom, read extracted page text, or open the original PDF.
+- Efik: a searchable text reader with 18–30px text controls and preserved stanza breaks. The original text file is retained alongside its generated JSON. Exact duplicate entries are omitted from the reading index.
+- The Apple and Google Play buttons point to the matching **Methodist Hymns (Offline)** listings by Michael Ngene. This third-party app is separate from the supplied books; its numbering may differ. The site does not claim church endorsement or embed the native app.
+
+The supplied sources contain numbering errors. Efik has variants 16A/16B, no distinct 146 or 185 label, and four repeated entries. The English PDF has some missing/repeated labels. Preserve the source wording and labels; do not invent missing hymns or silently renumber them. Search by opening words when needed.
+
+To replace the books, put the approved originals at the same paths, install Python's `pymupdf`, then run `python scripts/prepare_hymnbooks.py`. This rebuilds `efik.json` and `english-index.json`; Python is not needed to serve the website. Run `npm test` and `npm run build` afterward. PDF.js font resources and license are included in `public/pdfjs/`.
 
 - **Live worship:** administrators use **Admin → Church online → Live stream** to add an official HTTPS YouTube/Facebook link, description, and an offline, scheduled, or live status. Video URLs embed; channel/page URLs open externally. No broadcast or live status is invented. Set status manually at the start and end of a broadcast. Dates are entered and displayed in West Africa Time. The public page refreshes settings every minute.
 - **Members:** email magic-link sign-in creates a normal member account. Members can save an optional name, phone, and ministry, read their own latest 100 prayer requests, and open services/events. Member accounts never become administrators automatically. Member profiles are visible only to their owner; there is no public member directory.

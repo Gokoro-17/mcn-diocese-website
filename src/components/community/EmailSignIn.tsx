@@ -52,20 +52,20 @@ export default function EmailSignIn({
       <h2 className="mt-5 text-3xl font-semibold text-church-navy-dark">
         Your church, connected.
       </h2>
-      <p className="mt-3 text-sm leading-7 text-slate-600">
+      <p className="mt-3 text-base leading-7 text-slate-600">
         Enter your email to receive a secure sign-in link. New members can use
         the same form to create an account.
       </p>
       {!supabase ? (
         <p
-          className="mt-6 rounded-xl bg-amber-50 p-4 text-sm text-amber-900"
+          className="mt-6 rounded-xl bg-amber-50 p-4 text-base text-amber-900"
           role="status"
         >
           Member sign-in is temporarily unavailable. Please contact the church.
         </p>
       ) : (
         <form onSubmit={signIn} className="mt-7 space-y-5">
-          <label className="block text-sm font-semibold text-slate-700">
+          <label className="block text-base font-semibold text-slate-700">
             Email address
             <input
               className="community-input mt-2"
@@ -91,7 +91,7 @@ export default function EmailSignIn({
           </button>
           {sent && (
             <div
-              className="rounded-xl bg-emerald-50 p-4 text-sm leading-6 text-emerald-800"
+              className="rounded-xl bg-emerald-50 p-4 text-base leading-6 text-emerald-800"
               role="status"
             >
               Check <strong>{email}</strong>, including your spam folder. Open
@@ -107,11 +107,11 @@ export default function EmailSignIn({
             </div>
           )}
           {error && (
-            <p role="alert" className="text-sm leading-6 text-red-700">
+            <p role="alert" className="text-base leading-6 text-red-700">
               {error}
             </p>
           )}
-          <p className="text-xs leading-6 text-slate-500">
+          <p className="text-sm leading-6 text-slate-500">
             Your profile and prayer history are private. Creating a member
             account does not give access to website administration.
           </p>

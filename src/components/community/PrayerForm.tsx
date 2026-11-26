@@ -59,13 +59,13 @@ export default function PrayerForm({
         <h2 className="text-3xl font-semibold text-church-navy-dark">
           How can we pray with you?
         </h2>
-        <p className="mt-3 text-sm leading-7 text-slate-600">
+        <p className="mt-3 text-base leading-7 text-slate-600">
           Share what is on your heart. Your request is visible to you and
           approved church administrators, and will not appear on the public
           website.
         </p>
       </div>
-      <label className="block text-sm font-semibold text-slate-700">
+      <label className="block text-base font-semibold text-slate-700">
         Your name <span className="font-normal text-slate-400">(optional)</span>
         <input
           className="community-input mt-2"
@@ -75,7 +75,7 @@ export default function PrayerForm({
           onChange={(event) => setName(event.target.value)}
         />
       </label>
-      <label className="block text-sm font-semibold text-slate-700">
+      <label className="block text-base font-semibold text-slate-700">
         Prayer focus
         <select
           className="community-input mt-2"
@@ -87,7 +87,7 @@ export default function PrayerForm({
           ))}
         </select>
       </label>
-      <label className="block text-sm font-semibold text-slate-700">
+      <label className="block text-base font-semibold text-slate-700">
         Your request
         <textarea
           className="community-input mt-2 min-h-40 resize-y"
@@ -98,11 +98,11 @@ export default function PrayerForm({
           onChange={(event) => setMessage(event.target.value)}
           placeholder="Please pray with me about…"
         />
-        <span className="mt-1 block text-right text-xs font-normal text-slate-400">
+        <span className="mt-1 block text-right text-sm font-normal text-slate-400">
           {message.length}/4000
         </span>
       </label>
-      <label className="flex items-start gap-3 text-xs leading-6 text-slate-600">
+      <label className="flex items-start gap-3 text-sm leading-6 text-slate-600">
         <input
           type="checkbox"
           className="mt-1 h-4 w-4 shrink-0 accent-church-navy"
@@ -120,13 +120,13 @@ export default function PrayerForm({
       {notice && (
         <p
           role="status"
-          className="rounded-xl bg-emerald-50 p-4 text-sm leading-6 text-emerald-800"
+          className="rounded-xl bg-emerald-50 p-4 text-base leading-6 text-emerald-800"
         >
           {notice}
         </p>
       )}
       {error && (
-        <p role="alert" className="text-sm text-red-700">
+        <p role="alert" className="text-base text-red-700">
           {error}
         </p>
       )}

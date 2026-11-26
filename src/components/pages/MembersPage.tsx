@@ -104,7 +104,7 @@ function MemberDashboard({
     <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
       <div className="mb-8 flex flex-wrap items-center justify-between gap-5">
         <div>
-          <p className="text-xs font-bold uppercase tracking-[0.16em] text-church-red">
+          <p className="text-sm font-bold uppercase tracking-[0.16em] text-church-red">
             Your members portal
           </p>
           <h2 className="mt-2 text-3xl font-semibold text-church-navy-dark">
@@ -112,7 +112,9 @@ function MemberDashboard({
               ? `Welcome, ${profile.full_name}.`
               : "Welcome to your church family."}
           </h2>
-          <p className="mt-2 break-all text-sm text-slate-500">{user.email}</p>
+          <p className="mt-2 break-all text-base text-slate-500">
+            {user.email}
+          </p>
         </div>
         <button
           onClick={() => void signOut()}
@@ -135,7 +137,7 @@ function MemberDashboard({
           <button
             key={item.id}
             aria-pressed={tab === item.id}
-            className={`rounded-full px-5 py-2.5 text-sm font-semibold transition ${tab === item.id ? "bg-church-navy-dark text-white" : "bg-white text-slate-600 hover:bg-slate-100"}`}
+            className={`rounded-full px-5 py-2.5 text-base font-semibold transition ${tab === item.id ? "bg-church-navy-dark text-white" : "bg-white text-slate-600 hover:bg-slate-100"}`}
             onClick={() => {
               setTab(item.id);
               setNotice("");
@@ -148,7 +150,7 @@ function MemberDashboard({
       {(error || profileError) && (
         <div
           role="alert"
-          className="mb-6 flex flex-wrap items-center justify-between gap-3 rounded-xl bg-red-50 p-4 text-sm text-red-700"
+          className="mb-6 flex flex-wrap items-center justify-between gap-3 rounded-xl bg-red-50 p-4 text-base text-red-700"
         >
           <span>{error || profileError}</span>
           <button
@@ -172,10 +174,10 @@ function MemberDashboard({
           <h3 className="text-3xl font-semibold text-church-navy-dark">
             A little about you
           </h3>
-          <p className="text-sm leading-7 text-slate-500">
+          <p className="text-base leading-7 text-slate-500">
             Your profile is visible only to you. All fields are optional.
           </p>
-          <label className="block text-sm font-semibold text-slate-700">
+          <label className="block text-base font-semibold text-slate-700">
             Full name
             <input
               className="community-input mt-2"
@@ -187,7 +189,7 @@ function MemberDashboard({
               }
             />
           </label>
-          <label className="block text-sm font-semibold text-slate-700">
+          <label className="block text-base font-semibold text-slate-700">
             Phone number
             <input
               className="community-input mt-2"
@@ -200,7 +202,7 @@ function MemberDashboard({
               }
             />
           </label>
-          <label className="block text-sm font-semibold text-slate-700">
+          <label className="block text-base font-semibold text-slate-700">
             Ministry
             <select
               className="community-input mt-2"
@@ -224,7 +226,7 @@ function MemberDashboard({
             {saving ? "Saving…" : "Save my profile"}
           </button>
           {notice && (
-            <p role="status" className="text-sm text-emerald-700">
+            <p role="status" className="text-base text-emerald-700">
               {notice}
             </p>
           )}
@@ -242,18 +244,18 @@ function MemberDashboard({
                 My prayer history
               </h3>
               <button
-                className="text-xs font-bold text-church-navy underline"
+                className="text-sm font-bold text-church-navy underline"
                 onClick={() => setRevision((value) => value + 1)}
               >
                 Refresh
               </button>
             </div>
-            <p className="mt-2 text-xs text-slate-500">
+            <p className="mt-2 text-sm text-slate-500">
               Your latest 100 requests. Only you and approved administrators can
               read them.
             </p>
             {error ? (
-              <p className="mt-6 text-sm text-red-700">
+              <p className="mt-6 text-base text-red-700">
                 Prayer history could not be loaded.
               </p>
             ) : prayers.length ? (
@@ -263,7 +265,7 @@ function MemberDashboard({
                     key={prayer.id}
                     className="rounded-2xl border border-slate-100 p-5"
                   >
-                    <div className="flex flex-wrap justify-between gap-2 text-xs">
+                    <div className="flex flex-wrap justify-between gap-2 text-sm">
                       <span className="font-bold text-church-navy">
                         {prayer.category}
                       </span>
@@ -271,11 +273,11 @@ function MemberDashboard({
                         {prayerStatuses[prayer.status]}
                       </span>
                     </div>
-                    <p className="mt-3 whitespace-pre-wrap break-words text-sm leading-7 text-slate-600">
+                    <p className="mt-3 whitespace-pre-wrap break-words text-base leading-7 text-slate-600">
                       {prayer.message}
                     </p>
                     <time
-                      className="mt-3 block text-xs text-slate-400"
+                      className="mt-3 block text-sm text-slate-400"
                       dateTime={prayer.created_at}
                     >
                       {churchDate(prayer.created_at)}
@@ -284,7 +286,7 @@ function MemberDashboard({
                 ))}
               </ul>
             ) : (
-              <p className="mt-6 rounded-2xl bg-slate-50 p-6 text-sm leading-7 text-slate-500">
+              <p className="mt-6 rounded-2xl bg-slate-50 p-6 text-base leading-7 text-slate-500">
                 Your prayer journey starts here. Requests you send will appear
                 in this space.
               </p>
@@ -297,7 +299,7 @@ function MemberDashboard({
             <h3 className="text-3xl font-semibold text-church-navy-dark">
               Faith is better together.
             </h3>
-            <p className="mt-4 max-w-xl text-sm leading-7 text-slate-600">
+            <p className="mt-4 max-w-xl text-base leading-7 text-slate-600">
               Stay connected to worship, share a prayer, and find your next
               opportunity for fellowship.
             </p>
@@ -339,12 +341,12 @@ function MemberDashboard({
             <h3 className="mt-4 text-2xl font-semibold text-church-navy-dark">
               Make yourself at home.
             </h3>
-            <p className="mt-3 text-sm leading-7 text-slate-600">
+            <p className="mt-3 text-base leading-7 text-slate-600">
               Add your name and choose your ministry to personalise your space.
             </p>
             <button
               onClick={() => setTab("profile")}
-              className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-church-navy"
+              className="mt-5 inline-flex items-center gap-2 text-base font-bold text-church-navy"
             >
               Edit my profile
               <ArrowRight size={16} />
@@ -382,7 +384,7 @@ export default function MembersPage({
         <div className="mx-auto max-w-xl px-4 py-12 sm:px-6">
           <EmailSignIn />
           {error && (
-            <p className="mt-4 text-sm text-red-700" role="alert">
+            <p className="mt-4 text-base text-red-700" role="alert">
               {error}
             </p>
           )}

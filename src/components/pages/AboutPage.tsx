@@ -1,3 +1,4 @@
+import CommunityIntro from "../community/CommunityIntro";
 import {
   BookOpen,
   Cross,
@@ -5,11 +6,11 @@ import {
   MapPin,
   UsersRound,
 } from "lucide-react";
-import mcnLogo from "../../assets/mcn-logo.jpg";
+
 import {
   CHURCH_MISSION,
+  CHURCH_VISION,
   CHURCH_NAME,
-  TAGLINE,
   contactInfo,
 } from "../../data/churchData";
 import {
@@ -56,57 +57,23 @@ const beliefs = [
     title: "Community",
     text: "The church is the body of Christ, called to worship, nurture, service, and witness together.",
   },
-  { title: "Mission", text: CHURCH_MISSION },
 ];
 
 export default function AboutPage() {
   return (
     <div>
-      <section
-        className="relative overflow-hidden py-24 text-white md:py-32"
-        style={{
-          background:
-            "linear-gradient(135deg, var(--church-navy-dark) 0%, var(--church-navy) 65%, var(--church-red-dark) 100%)",
-        }}
+      <CommunityIntro
+        eyebrow="Our church in Calabar"
+        title="Our story at Atamunu"
       >
-        <div className="relative z-10 mx-auto max-w-4xl px-6 text-center">
-          <div className="mx-auto mb-8 h-24 w-24 overflow-hidden rounded-full border-[3px] border-white/30 shadow-2xl">
-            <img
-              src={mcnLogo}
-              alt="Methodist Church Nigeria emblem"
-              className="h-full w-full object-contain"
-            />
-          </div>
-          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.25em] text-amber-200">
-            Our church in Calabar
-          </p>
-          <h1 className="mb-5 text-4xl font-semibold md:text-6xl">
-            Our story at Atamunu
-          </h1>
-          <p className="mx-auto max-w-2xl text-lg leading-8 text-white/80">
-            {CHURCH_NAME}: a Methodist church family at 79 Atamunu Street,
-            Calabar, Cross River State.
-          </p>
-          <p className="mt-5 text-sm font-semibold text-amber-200">{TAGLINE}</p>
-        </div>
-        <div className="absolute inset-x-0 bottom-0">
-          <svg
-            viewBox="0 0 1440 60"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            className="w-full"
-            aria-hidden="true"
-          >
-            <path d="M0 60L720 0L1440 60H0Z" fill="var(--church-cream)" />
-          </svg>
-        </div>
-      </section>
+        <p>{CHURCH_NAME} at 79 Atamunu Street, Calabar, Cross River State.</p>
+      </CommunityIntro>
 
       <section className="py-16 md:py-24" aria-labelledby="local-history-title">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid items-start gap-12 lg:grid-cols-2 lg:gap-16">
             <div>
-              <p className="mb-3 text-xs font-bold uppercase tracking-[0.2em] text-church-red">
+              <p className="mb-3 text-sm font-bold uppercase tracking-[0.2em] text-church-red">
                 Rooted in this community
               </p>
               <h2
@@ -115,7 +82,7 @@ export default function AboutPage() {
               >
                 The congregation behind the cathedral
               </h2>
-              <div className="space-y-5 text-sm leading-8 text-slate-600">
+              <div className="space-y-5 text-base leading-8 text-slate-600">
                 <p>
                   Our home is 79 Atamunu Street in Calabar. Here, our
                   congregation gathers for worship, prayer, Holy Communion,
@@ -159,16 +126,14 @@ export default function AboutPage() {
                 <p>
                   Our life together continues through worship, discipleship, the
                   ministries of children and young people, fellowship, and
-                  service. Our mission is to win souls for Christ, nurture
-                  spiritually fulfilled members, and remain active in serving
-                  humanity.
+                  service.
                 </p>
               </div>
               <aside
-                className="mt-7 rounded-2xl border border-[#e6e1d6] bg-white p-5 text-xs leading-7 text-slate-500"
+                className="mt-7 rounded-2xl border border-[#e6e1d6] bg-white p-5 text-sm leading-7 text-slate-500"
                 aria-label="Historical record note"
               >
-                <strong className="block text-sm font-semibold text-church-navy">
+                <strong className="block text-base font-semibold text-church-navy">
                   Our earliest years
                 </strong>
                 The public sources cited here do not establish the
@@ -181,7 +146,7 @@ export default function AboutPage() {
                 href={contactInfo.maps}
                 target="_blank"
                 rel="noreferrer"
-                className="mt-7 inline-flex items-center gap-2 text-sm font-semibold text-church-navy"
+                className="mt-7 inline-flex items-center gap-2 text-base font-semibold text-church-navy"
               >
                 <MapPin size={18} />
                 Find us at 79 Atamunu Street
@@ -195,20 +160,20 @@ export default function AboutPage() {
                 {localChurchMilestones.map((milestone) => (
                   <li key={milestone.date} className="relative">
                     <span className="absolute -left-[29px] top-1 h-2.5 w-2.5 rounded-full bg-church-red ring-4 ring-white" />
-                    <p className="text-xs font-bold uppercase tracking-wider text-church-red">
+                    <p className="text-sm font-bold uppercase tracking-wider text-church-red">
                       {milestone.date}
                     </p>
                     <h4 className="mb-2 mt-2 text-lg font-semibold text-church-navy-dark">
                       {milestone.title}
                     </h4>
-                    <p className="text-sm leading-7 text-slate-600">
+                    <p className="text-base leading-7 text-slate-600">
                       {milestone.description}
                     </p>
                     <a
                       href={localHistorySources[milestone.source].url}
                       target="_blank"
                       rel="noreferrer"
-                      className="mt-2 inline-block text-xs font-semibold text-church-navy underline underline-offset-4"
+                      className="mt-2 inline-block text-sm font-semibold text-church-navy underline underline-offset-4"
                       aria-label={`Source for ${milestone.title}`}
                     >
                       Source
@@ -216,7 +181,7 @@ export default function AboutPage() {
                   </li>
                 ))}
               </ol>
-              <details className="mt-8 border-t border-slate-100 pt-5 text-xs leading-6 text-slate-500">
+              <details className="mt-8 border-t border-slate-100 pt-5 text-sm leading-6 text-slate-500">
                 <summary className="cursor-pointer font-semibold text-church-navy">
                   History sources
                 </summary>
@@ -245,7 +210,7 @@ export default function AboutPage() {
         aria-labelledby="local-church-life"
       >
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <p className="mb-3 text-xs font-bold uppercase tracking-[0.2em] text-church-red">
+          <p className="mb-3 text-sm font-bold uppercase tracking-[0.2em] text-church-red">
             Faith lived together
           </p>
           <h2
@@ -266,9 +231,29 @@ export default function AboutPage() {
                 <h3 className="mb-3 mt-5 text-2xl font-semibold text-church-navy-dark">
                   {title}
                 </h3>
-                <p className="text-sm leading-7 text-slate-600">{text}</p>
+                <p className="text-base leading-7 text-slate-600">{text}</p>
               </article>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section
+        className="site-section border-y border-slate-200/80"
+        aria-label="Our purpose"
+      >
+        <div className="site-container grid gap-12 md:grid-cols-2 md:gap-20">
+          <div>
+            <h2 className="section-heading mb-5">Our mission</h2>
+            <p className="text-lg leading-relaxed text-slate-600">
+              {CHURCH_MISSION}
+            </p>
+          </div>
+          <div>
+            <h2 className="section-heading mb-5">Our vision</h2>
+            <p className="text-lg leading-relaxed text-slate-600">
+              {CHURCH_VISION}
+            </p>
           </div>
         </div>
       </section>
@@ -276,7 +261,7 @@ export default function AboutPage() {
       <section className="py-16 md:py-24" aria-labelledby="church-beliefs">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mb-12 text-center">
-            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-church-red">
+            <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-church-red">
               The faith we share
             </p>
             <h2
@@ -298,7 +283,7 @@ export default function AboutPage() {
                 <h3 className="mb-2 text-lg font-semibold text-church-navy">
                   {belief.title}
                 </h3>
-                <p className="text-sm leading-7 text-slate-600">
+                <p className="text-base leading-7 text-slate-600">
                   {belief.text}
                 </p>
               </article>
