@@ -72,7 +72,7 @@ export default function Navbar({
             className="site-brand"
             aria-label={`${CHURCH_NAME} — home`}
           >
-            <img src={mcnLogo} alt="" width={56} height={56} />
+            <img src={mcnLogo} alt="" width={40} height={40} />
           </SiteLink>
           <nav className="desktop-navigation" aria-label="Main navigation">
             {primaryLinks.map(({ page, label, Icon }) => (
@@ -99,7 +99,7 @@ export default function Navbar({
             aria-controls="site-mobile-menu"
             aria-label="Open navigation menu"
           >
-            <Menu size={27} />
+            <Menu size={22} />
           </button>
         </div>
       </header>
