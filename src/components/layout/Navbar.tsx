@@ -13,7 +13,7 @@ import {
 } from "lucide-react";
 import { FaHandsPraying } from "react-icons/fa6";
 import mcnLogo from "../../assets/mcn-logo.jpg";
-import { CHURCH_NAME, DENOMINATION_NAME } from "../../data/churchData";
+import { CHURCH_NAME } from "../../data/churchData";
 import type { SitePage } from "../../lib/navigation";
 import SiteLink from "../navigation/SiteLink";
 
@@ -73,10 +73,6 @@ export default function Navbar({
             aria-label={`${CHURCH_NAME} — home`}
           >
             <img src={mcnLogo} alt="" width={56} height={56} />
-            <span>
-              <strong>{CHURCH_NAME}</strong>
-              <small>{DENOMINATION_NAME}</small>
-            </span>
           </SiteLink>
           <nav className="desktop-navigation" aria-label="Main navigation">
             {primaryLinks.map(({ page, label, Icon }) => (
